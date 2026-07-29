@@ -27,6 +27,18 @@
 		}
 	],
 	"Conditions": {
+		"Colors": {
+			"description": "",
+			"default": "Gruvbox",
+			"values": {
+				"Gruvbox": {
+					"TargetCss": {
+						"affects": [".*"],
+						"src": "src/shared/colors/gruvbox.css"
+					}
+				}
+			}
+		},
 		"Reduced game list entry height": {
 			"default": "no",
 			"description": "Makes the game list entries' height smaller.\nOnly use this if you patched Steam! Run [c]./scripts/patch steam[/c] in the repo's directory to apply the patches (Linux only).",
