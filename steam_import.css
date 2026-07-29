@@ -1,1 +1,23 @@
 @import url("vendor/steam.css");
+
+/* Always use active caption colors for the titlebar */
+.title-area,
+.WindowFocus .title-area {
+	--color-inactive-caption-bg-start: var(--color-active-caption-bg-start) !important;
+	--color-inactive-caption-bg-end: var(--color-active-caption-bg-end) !important;
+	--color-inactive-caption-text: var(--color-active-caption-text) !important;
+}
+
+.FullModalOverlay .DialogHeader,
+.FullModalOverlay.WindowFocus .DialogHeader {
+	--color-inactive-caption-bg-start: var(--color-active-caption-bg-start) !important;
+	--color-inactive-caption-bg-end: var(--color-active-caption-bg-end) !important;
+	--color-inactive-caption-text: var(--color-active-caption-text) !important;
+}
+
+.VoiceRoomChatTitle,
+.WindowFocus .VoiceRoomChatTitle {
+	--color-inactive-caption-bg-start: var(--color-active-caption-bg-start) !important;
+	--color-inactive-caption-bg-end: var(--color-active-caption-bg-end) !important;
+	--color-inactive-caption-text: var(--color-active-caption-text) !important;
+}
