@@ -1,13 +1,13 @@
 {
-	"author": "ricewind",
-	"name": "Windows 95",
-	"description": "A Windows 95 look",
-	"version": "2.3.0",
-"header_image": "https://raw.githubusercontent.com/d2tx/steam95/main/assets/preview/steam/main-window.png",
-"splash_image": "https://raw.githubusercontent.com/d2tx/steam95/main/assets/preview/steam/main-window.png",
+	"author": "d2tx",
+	"name": "Gruvbox Steam",
+	"description": "Gruvbox-themed Windows 95 look for Steam",
+	"version": "1.0.0",
+	"header_image": "https://raw.githubusercontent.com/d2tx/gruvbox-steam/main/assets/preview/steam/main-window.png",
+	"splash_image": "https://raw.githubusercontent.com/d2tx/gruvbox-steam/main/assets/preview/steam/main-window.png",
 	"github": {
 		"owner": "d2tx",
-		"repo_name": "steam95"
+		"repo_name": "gruvbox-steam"
 	},
 	"Patches": [
 		{
@@ -27,40 +27,9 @@
 		}
 	],
 	"Conditions": {
-		"Colors": {
-			"description": "[b]Only default[/b] will respect system's light/dark/high contrast theme preference.",
-			"default": "Default",
-			"values": {
-				"Default": {},
-				"Hotdog Stand": {
-					"TargetCss": {
-						"affects": [".*"],
-						"src": "src/shared/colors/hotdogstand.css"
-					}
-				},
-				"VGUI": {
-					"TargetCss": {
-						"affects": [".*"],
-						"src": "src/shared/colors/vgui.css"
-					}
-				},
-					"Gruvbox": {
-					"TargetCss": {
-						"affects": [".*"],
-						"src": "src/shared/colors/gruvbox.css"
-					}
-				},
-				"Windows 2000": {
-					"TargetCss": {
-						"affects": [".*"],
-						"src": "src/shared/colors/win2000.css"
-					}
-				}
-			}
-		},
 		"Reduced game list entry height": {
 			"default": "no",
-			"description": "Makes the game list entries' height smaller. \n Only use this if you patched Steam! Run [c]./scripts/patch steam[/c] in the repo's directory to apply the patches (Linux only).",
+			"description": "Makes the game list entries' height smaller.\nOnly use this if you patched Steam! Run [c]./scripts/patch steam[/c] in the repo's directory to apply the patches (Linux only).",
 			"values": {
 				"yes": {
 					"TargetCss": {
