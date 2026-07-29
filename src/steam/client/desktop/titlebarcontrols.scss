@@ -1,0 +1,102 @@
+@use "shared/controls";
+@use "shared++/utils";
+
+@mixin -combobox-button {
+	// TODO: for some reason it's not aligned like in vs code, maybe it got
+	// fixed in later chromium ?
+	--button-img-pos-y: 1px;
+
+	@include controls.combobox-icon-button;
+
+	height: var(--steamdesktop_icon-button-size);
+}
+
+#AccountMenu {
+	@include controls.combobox-button;
+
+	// small avatars are 16px, making the button 26px
+	& > div:not(.avatarHolder) {
+		margin-block-start: -1px;
+	}
+
+	.avatarHolder {
+		top: var(--offset-click);
+		left: var(--offset-click);
+	}
+}
+
+#Button {
+	@include controls.button;
+	@include controls.icon-button;
+
+	// Align with the left side
+	width: var(--steamdesktop_icon-button-size);
+	min-height: var(--steamdesktop_icon-button-size);
+
+	cursor: default;
+
+	&#AnnouncementsButton {
+		--button-img: icon("newspaper");
+	}
+
+	&#GamepadUIToggle {
+		--button-img: icon("computer");
+	}
+
+	&#NotificationsButton {
+		--button-img: icon("mail-read");
+		@include -combobox-button;
+
+		&#HasNew {
+			--button-img: icon("mail");
+		}
+	}
+
+	&#SoundtrackControls {
+		--button-img: icon("sound");
+		@include -combobox-button;
+	}
+
+	&::after {
+		flex-shrink: 0;
+	}
+}
+
+#NotificationButtonContainer {
+	margin: 0;
+}
+
+#TitleBarControls {
+	margin: 0;
+
+	position: fixed;
+	position-anchor: --supernavbar;
+	top: anchor(top);
+	right: calc(anchor(right) + var(--toolbar-container-spacing));
+	z-index: 1;
+
+	& > :has(#AccountMenu) {
+		margin-inline-end: var(--toolbar-spacing);
+
+		order: -1;
+	}
+
+	& > :has(#NotificationsButton, #SoundtrackControls) {
+		order: -2;
+	}
+
+	svg {
+		display: none;
+	}
+}
+
+#WalletBalance {
+	@include utils.parentheses;
+
+	color: var(--color-gray-text);
+
+	#AccountMenu:active & {
+		color: transparent;
+		text-shadow: 1px 1px var(--color-gray-text);
+	}
+}

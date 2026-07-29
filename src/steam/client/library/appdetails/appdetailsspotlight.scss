@@ -1,0 +1,38 @@
+@use "steam/shared";
+
+#AppDetailsSpotlightDemo {
+	@include shared.library_section-header;
+
+	font: var(--text-ui);
+	font-weight: bold;
+
+	#Buttons {
+		padding-top: var(--text-spacing);
+	}
+
+	#Info {
+		font: var(--text-ui);
+		padding-inline: var(--library_section-spacing);
+	}
+
+	#Title {
+		color: inherit;
+		font: inherit;
+		font-weight: normal;
+		margin-top: var(--text-spacing);
+	}
+
+	#VisitButton {
+		margin-top: var(--text-spacing);
+
+		height: unset;
+	}
+}
+
+#ReviewContainer {
+	@include shared.library_section-header;
+
+	#Inner {
+		width: auto;
+	}
+}

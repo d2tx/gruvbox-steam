@@ -1,0 +1,158 @@
+@use "shared/controls";
+@use "shared/table";
+@use "shared/tabs";
+@use "shared/text";
+@use "shared/window";
+@use "shared++/utils";
+
+.ChatGroupSettingsChannels_Row {
+	.ChannelDeleteButton {
+		@include controls.button;
+		@include utils.text-reset;
+
+		display: flex;
+		align-items: center;
+		justify-content: center;
+		height: 28px;
+	}
+
+	._DialogRow {
+		background: none;
+		color: inherit;
+		padding: 0;
+		margin: 0;
+
+		height: unset;
+
+		svg {
+			display: none;
+		}
+	}
+
+	._DialogRowLabel,
+	._DialogRowSecondaryLabel {
+		font: var(--text-ui);
+		margin: 0;
+	}
+}
+
+.createNewRoleButton {
+	position: fixed;
+	right: var(--pos);
+	bottom: var(--pos);
+	height: unset;
+
+	svg {
+		display: none;
+	}
+}
+
+.DialogInnerBody > .displayColumn {
+	@include controls.groupbox;
+
+	gap: var(--text-spacing);
+
+	.DialogHBar {
+		display: none;
+	}
+
+	.DialogLabel {
+		@include utils.legend-as-div;
+	}
+}
+
+.DialogSpanningTable {
+	@include window.content-container;
+
+	td,
+	th {
+		@include utils.text-reset;
+	}
+
+	td {
+		@include table.row;
+	}
+
+	thead th {
+		@include table.header-row;
+	}
+
+	tbody tr {
+		background: none;
+	}
+}
+
+.GeneralChatSettings {
+	@include controls.groupbox;
+
+	& > .Panel {
+		@include text.input-label;
+	}
+}
+
+.PermissionsSectionHeader {
+	@include utils.legend-as-div;
+}
+
+.roleButton {
+	width: 100%;
+	display: flex;
+	justify-content: space-between;
+
+	svg {
+		display: none;
+	}
+}
+
+.roleList {
+	@include tabs.content;
+
+	flex-grow: 1;
+
+	.DialogBody {
+		box-shadow: none;
+		padding: 0;
+	}
+}
+
+.rolePriorityButton {
+	@include controls.button($disabled-sel: "&.Disabled");
+	@include window.titlebar-button($disabled-sel: "&.Disabled");
+
+	opacity: 1;
+
+	width: 16px;
+
+	&.Disabled {
+		pointer-events: none;
+	}
+
+	&.roleUp,
+	&.roleDown {
+		--button-img-size: 7px 4px;
+		--button-img-pos: center;
+	}
+
+	&.roleUp {
+		--button-img: icon("arrow-top", "mono");
+	}
+
+	&.roleDown {
+		--button-img: icon("arrow-bottom", "mono");
+
+		top: 0;
+	}
+
+	svg {
+		display: none;
+	}
+}
+
+.rolePriorityContainer {
+	width: unset;
+	height: unset;
+}
+
+.roleSubtitle {
+	@include utils.text-reset;
+}

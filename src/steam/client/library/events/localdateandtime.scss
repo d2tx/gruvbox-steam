@@ -1,0 +1,24 @@
+#ActiveEventCallOut {
+	all: unset;
+
+	background: light-dark(darkgreen, green);
+	color: white;
+	font: var(--text-ui);
+	padding: 0 var(--text-spacing);
+}
+
+#RightSideTitles {
+	color: var(--color-gray-text);
+	font: var(--text-ui);
+	letter-spacing: 0;
+	text-transform: none;
+}
+
+#ShortDateAndTime {
+	color: var(--color-button-text);
+	font: var(--text-ui);
+}
+
+#ShortDateRange {
+	flex-direction: column;
+}

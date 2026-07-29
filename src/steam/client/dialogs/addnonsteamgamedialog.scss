@@ -1,0 +1,112 @@
+@use "shared/controls";
+@use "shared/table";
+@use "shared++/utils";
+@use "steam/shared";
+
+#AddNonSteamGameDialog {
+	min-width: unset;
+}
+
+#AppName {
+	justify-content: space-between;
+
+	#GameRow & {
+		width: calc(32% + 24px);
+	}
+}
+
+#Checkbox,
+#IconContainer,
+#AppName,
+#ExePath {
+	@include utils.text-reset;
+
+	opacity: 1;
+	// Seems like V*lve forgot about this one
+	text-overflow: ellipsis;
+	padding: 2px 10px;
+}
+
+#Footer {
+	gap: var(--dialog-button-spacing);
+	padding-top: var(--dialog-button-spacing);
+
+	& > .DialogButton.Primary {
+		min-width: 148px;
+	}
+}
+
+#GameList {
+	--dialog-offset: calc(
+		var(--main-window-border-spacing) + var(--dialog-spacing)
+	);
+	--text-field-height: calc(
+		1rlh + var(--input-spacing) * 2 + var(--border-size) * 2
+	);
+
+	--inset-inline: var(--dialog-offset);
+	--inset-block-start: calc(
+		var(--dialog-offset) + var(--main-window-titlebar-height) + 1lh +
+			var(--text-field-height) + var(--text-spacing) * 2
+	);
+	--inset-block-end: calc(
+		var(--dialog-offset) + var(--statusbar-height) + var(--window-gap) * 2 +
+			1lh + var(--button-spacing) * 2 + var(--dialog-button-spacing)
+	);
+	--inset: var(--inset-block-start) var(--inset-inline) var(--inset-block-end)
+		var(--inset-inline);
+
+	@include utils.content-container-alt;
+
+	overflow: auto;
+	border: none;
+	box-shadow: none;
+
+	// For #Header
+	margin-top: 0;
+}
+
+#GameRow {
+	background-color: transparent;
+	padding: 0;
+}
+
+#Header {
+	border: none;
+	padding: 0;
+	margin: 0 var(--border-size);
+	margin-top: calc(var(--text-spacing) + var(--border-size));
+
+	& > div {
+		@include utils.text-reset;
+		@include controls.button;
+		@include table.button;
+		@include shared.table-button-arrows;
+	}
+
+	svg {
+		display: none;
+	}
+
+	$-btns: (
+		1: 5%,
+		2: 6%,
+		3: 32%,
+	);
+	@each $i, $btn in $-btns {
+		& > :nth-child(#{$i}) {
+			min-width: $btn;
+		}
+	}
+}
+
+#IconContainer {
+	margin: 0;
+
+	justify-content: center;
+
+	img {
+		width: var(--icon-size);
+		height: var(--icon-size);
+	}
+}

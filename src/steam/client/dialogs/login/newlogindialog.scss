@@ -1,0 +1,104 @@
+@use "shared/controls";
+@use "shared/text";
+@use "shared++/utils";
+
+#AccountCreationPrompt {
+	margin-right: var(--text-spacing);
+}
+
+#BackArrow,
+#HeaderLogo {
+	display: none;
+}
+
+#BackArrowContainer {
+	@include controls.button;
+
+	text-align: center;
+
+	height: unset;
+
+	&::before {
+		content: var(--NavigateBack);
+	}
+}
+
+#Checkbox {
+	@include controls.checkbox($checked-sel: "&:not(:empty)");
+}
+
+#CheckboxFieldLabel {
+	@include utils.text-reset;
+
+	padding-left: var(--label-spacing);
+}
+
+#EmbeddedRoot {
+	background: none;
+}
+
+#EmbeddedRootFooter {
+	@include utils.text-reset;
+
+	padding: 0;
+}
+
+#FieldLabel {
+	@include utils.text-reset;
+}
+
+#FormError {
+	color: red;
+	font-size: var(--text-ui-size);
+	text-align: start;
+}
+
+#Login {
+	height: 100%;
+	justify-content: center;
+}
+
+#LoginForm {
+	display: flex;
+	flex-direction: column;
+}
+
+#QR {
+	margin: var(--text-spacing) 0;
+}
+
+#QRSection {
+	margin-left: 16px;
+}
+
+#SignInButtonContainer {
+	align-items: start;
+}
+
+#SubmitButton {
+	@include controls.button;
+
+	background-image: none;
+
+	width: unset;
+}
+
+#TextField {
+	gap: var(--text-spacing);
+}
+
+#TextInput {
+	@include controls.text-field;
+}
+
+#TextLink {
+	@include text.link;
+
+	font-size: var(--text-ui-size);
+}
+
+#UseMobileAppForQR {
+	color: inherit;
+	font-size: var(--text-ui-size);
+	text-align: start;
+}

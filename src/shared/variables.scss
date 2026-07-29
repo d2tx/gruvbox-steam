@@ -1,0 +1,296 @@
+:where(:root) {
+	/**
+	 * Colors
+	 *
+	 * Naming reference: https://learn.microsoft.com/en-us/windows/win32/controls/themesfileformat-overview#control-panelcolors-section
+	**/
+	--color-inactive-caption-bg-start: var(--color-gray-text);
+	--color-inactive-caption-bg-end: var(--color-gray-text);
+	--color-inactive-caption-text: var(--color-button-face);
+
+	--color-menubar: var(--color-button-face);
+	--color-menubar-text: var(--color-button-text);
+
+	@media (prefers-color-scheme: light) {
+		--color-button-face: #c0c0c0;
+		--color-button-text: #000;
+		--color-button-highlight: #fff;
+		--color-button-light: #dfdfdf;
+		--color-button-shadow: #808080;
+		--color-button-shadow-dark: #000;
+
+		--color-window: #fff;
+		--color-window-text: #000;
+
+		--color-active-caption-bg-start: #000080;
+		--color-active-caption-bg-end: #000080;
+		--color-active-caption-text: #fff;
+
+		--color-highlight: #000080;
+		--color-highlight-border: #ff0;
+		--color-highlight-text: #fff;
+
+		--color-tooltip: #ffffe1;
+		--color-tooltip-text: #000;
+
+		--color-gray-text: #87888f;
+		--color-link: #00f;
+	}
+
+	@media (prefers-color-scheme: dark) {
+		--color-button-face: #252525;
+		--color-button-text: #ccc;
+		--color-button-highlight: #808080;
+		--color-button-light: #252525;
+		--color-button-shadow: #505050;
+		--color-button-shadow-dark: #000;
+
+		--color-window: #121212;
+		--color-window-text: #ccc;
+
+		--color-active-caption-bg-start: #ccc;
+		--color-active-caption-bg-end: #ccc;
+		--color-active-caption-text: #252525;
+
+		--color-highlight: #ccc;
+		--color-highlight-border: #7f7f00;
+		--color-highlight-text: #252525;
+
+		--color-tooltip: #252525;
+		--color-tooltip-text: #ccc;
+
+		--color-gray-text: #808080;
+		--color-link: #8080ff;
+	}
+
+	@media (forced-colors: active) {
+		--color-button-face: ButtonFace;
+		--color-button-text: ButtonText;
+		--color-button-highlight: ButtonText;
+		--color-button-light: ButtonText;
+		--color-button-shadow: ButtonText;
+		--color-button-shadow-dark: ButtonText;
+
+		--color-window: ButtonFace;
+		--color-window-text: ButtonText;
+
+		--color-active-caption-bg-start: Highlight;
+		--color-active-caption-bg-end: Highlight;
+		--color-active-caption-text: HighlightText;
+
+		--color-highlight: Highlight;
+		--color-highlight-border: Highlight;
+		--color-highlight-text: HighlightText;
+
+		--color-tooltip: Canvas;
+		--color-tooltip-text: CanvasText;
+
+		--color-gray-text: GrayText;
+		--color-link: LinkText;
+	}
+
+	/**
+	 * Text
+	 *
+	 * I.   Fallback fonts shipped with Windows 95.
+	 *      Used in the first place due to
+	 *      rendering issues on Linux (UI)
+	 *      & not looking dumb (monospace).
+	 * II.  Normal
+	 * III. System
+	**/
+	--text-line: 1.2;
+
+	--text-header-size: 16pt;
+	--text-header: var(--text-header-size) / var(--text-line) var(--text-ui-font);
+
+	--text-ui-font:
+		"Terminess Nerd Font", "Tahoma", "Arial", "Verdana", "MS Sans Serif", "MS Reference Sans Serif",
+		sans-serif;
+	--text-ui-size: 8pt;
+	// TODO: chromium bug
+	--text-ui-size: 11px;
+	--text-ui: var(--text-ui-size) / var(--text-line) var(--text-ui-font);
+
+	--text-monospace-font:
+		"Terminess Nerd Font", "MS Gothic", "MS Mincho", "SimSun", "Less Perfect DOS VGA", monospace;
+	--text-monospace-size: 9pt;
+	--text-monospace: var(--text-monospace-size) / var(--text-line)
+		var(--text-monospace-font);
+
+	/**
+	 * Borders
+	**/
+	--border-statusbar:
+		inset -1px -1px var(--color-button-highlight),
+		inset 1px 1px var(--color-button-shadow);
+	--border-button-raised:
+		inset -1px -1px var(--color-button-shadow-dark),
+		inset 1px 1px var(--color-button-highlight),
+		inset -2px -2px var(--color-button-shadow);
+	--border-button-sunken:
+		inset -1px -1px var(--color-button-highlight),
+		inset 1px 1px var(--color-button-shadow-dark),
+		inset -2px -2px var(--color-button-light),
+		inset 2px 2px var(--color-button-shadow);
+	--border-button-sunken-alt: inset 0 0 0 1px var(--color-button-shadow);
+	--border-button-focused:
+		inset -2px -2px var(--color-button-shadow-dark),
+		inset 1px 1px var(--color-button-shadow-dark),
+		inset 2px 2px var(--color-button-highlight),
+		inset -3px -3px var(--color-button-shadow);
+	--border-tab-button-raised:
+		inset -1px -1px var(--color-button-shadow),
+		inset 1px 1px var(--color-button-highlight);
+	--border-tab-button-sunken:
+		var(--border-button-sunken), inset 0 3px var(--color-button-highlight);
+	--border-scrollbar-button-raised:
+		inset -1px -1px var(--color-button-shadow-dark),
+		inset 1px 1px var(--color-button-light),
+		inset -2px -2px var(--color-button-shadow),
+		inset 2px 2px var(--color-button-highlight);
+	--border-field:
+		inset -1px -1px var(--color-button-highlight),
+		inset 1px 1px var(--color-button-shadow),
+		inset -2px -2px var(--color-button-light),
+		inset 2px 2px var(--color-button-shadow-dark);
+	--border-groupbox:
+		inset 0 0 0 1px var(--color-button-shadow),
+		inset 2px 0 var(--color-button-highlight),
+		inset 0 2px var(--color-button-highlight),
+		0 1px var(--color-button-highlight), 1px 0 var(--color-button-highlight),
+		1px 1px var(--color-button-highlight);
+	--border-tab: var(--color-button-highlight) var(--color-button-shadow)
+		var(--color-button-shadow) var(--color-button-highlight);
+	--border-window:
+		inset -1px -1px var(--color-button-shadow-dark),
+		inset 1px 1px var(--color-button-light),
+		inset -2px -2px var(--color-button-shadow),
+		inset 2px 2px var(--color-button-highlight);
+
+	/**
+	 * Dimensions
+	**/
+	--border-size: 2px;
+	--window-gap: 2px;
+
+	--button-spacing: 5px;
+	--icon-size: 16px;
+	--input-spacing: 2px;
+	--scrollbar-size: 16px;
+	--sel-button-size: 13px;
+
+	--tabs-height: calc(1rlh + 7px);
+	// This stays hardcoded because idk looks good enough lolol
+	--titlebar-height: 18px;
+	--menubar-height: calc(1rlh + 5px);
+	--statusbar-height: calc(1rlh + 5px);
+
+	--messagebox-spacing: 11px 10px;
+	--messagebox-content-spacing: 17px;
+
+	--dialog-spacing: 7px;
+	--dialog-button-spacing: 6px;
+
+	--toolbar-spacing: 8px;
+	--toolbar-container-spacing: 6px;
+
+	--icon-button-width: 23px;
+	--icon-button-height: 22px;
+
+	--button-min-width: 75px;
+	--combobox-button-height: 24px;
+	--combobox-icon-button-width: calc(
+		var(--button-spacing) * 2 + var(--text-spacing) * 2 + var(--icon-size) +
+			10px
+	);
+	--tab-button-spacing: 4px;
+	--tab-button-height: 24px;
+
+	--label-spacing: 6px;
+	--table-row-spacing: 2px 7px;
+	--tabpanel-spacing: 12px;
+	--text-spacing: 4px;
+	--titlebar-spacing: 4px;
+	--tree-spacing: 6px;
+	--window-spacing: 2px;
+
+	--main-window-titlebar-height: 18px;
+	--main-window-border-spacing: calc(
+		var(--border-size) + var(--window-spacing)
+	);
+
+	/**
+	 * Other
+	**/
+	--checkerboard: repeating-conic-gradient(
+			var(--color-window) 0% 25%,
+			var(--color-button-face) 0% 50%
+		)
+		0% 0% / 2px 2px;
+
+	// Automatic light/dark color support
+	color-scheme: light dark;
+	// rlh calculations support
+	font: var(--text-ui);
+}
+
+// Actually belongs in generatedassets.scss, but it outputs every time it
+// gets imported, unlike this file.
+:where(:root) {
+	// prettier-ignore
+	--tab-border-left:
+		linear-gradient(90deg, var(--color-button-face)        1px, var(--color-button-face)),
+		linear-gradient(90deg, var(--color-button-face)        1px, var(--color-button-face)),
+		linear-gradient(90deg, var(--color-button-highlight)   1px, var(--color-button-highlight)),
+		linear-gradient(90deg, var(--color-button-face)        1px, var(--color-button-face)),
+		linear-gradient(90deg, var(--color-button-highlight)   1px, var(--color-button-highlight)),
+		linear-gradient(90deg, var(--color-button-face)        1px, var(--color-button-face));
+
+	// prettier-ignore
+	--tab-border-right:
+		linear-gradient(90deg, var(--color-button-shadow)      1px, var(--color-button-shadow)),
+		linear-gradient(90deg, var(--color-button-face)        1px, var(--color-button-face)),
+		linear-gradient(90deg, var(--color-button-face)        1px, var(--color-button-face)),
+		linear-gradient(90deg, var(--color-button-face)        1px, var(--color-button-face)),
+		linear-gradient(90deg, var(--color-button-shadow-dark) 1px, var(--color-button-shadow-dark)),
+		linear-gradient(90deg, var(--color-button-face)        1px, var(--color-button-face));
+
+	// prettier-ignore
+	--tab-vertical-border-top:
+		linear-gradient(90deg, var(--color-button-face)        1px, var(--color-button-face)),
+		linear-gradient(90deg, var(--color-button-face)        1px, var(--color-button-face)),
+		linear-gradient(90deg, var(--color-button-face)        1px, var(--color-button-face)),
+		linear-gradient(90deg, var(--color-button-highlight)   1px, var(--color-button-highlight)),
+		linear-gradient(90deg, var(--color-button-highlight)   1px, var(--color-button-highlight)),
+		linear-gradient(90deg, var(--color-button-face)        1px, var(--color-button-face));
+
+	// prettier-ignore
+	--tab-vertical-border-bottom:
+		linear-gradient(90deg, var(--color-button-shadow)      1px, var(--color-button-shadow)),
+		linear-gradient(90deg, var(--color-button-face)        1px, var(--color-button-face)),
+		linear-gradient(90deg, var(--color-button-face)        1px, var(--color-button-face)),
+		linear-gradient(90deg, var(--color-button-shadow-dark) 1px, var(--color-button-shadow-dark)),
+		linear-gradient(90deg, var(--color-button-face)        1px, var(--color-button-face)),
+		linear-gradient(90deg, var(--color-button-face)        1px, var(--color-button-face));
+
+	// prettier-ignore
+	--tree-icon-collapsed:
+		linear-gradient(90deg, var(--color-window-text) 1px, var(--color-window-text)) 3px 1px,
+		linear-gradient(90deg, var(--color-window-text) 1px, var(--color-window-text)) 3px 2px,
+		linear-gradient(90deg, var(--color-window-text) 1px, var(--color-window-text)) 3px 3px,
+		linear-gradient(90deg, var(--color-window-text) 1px, var(--color-window-text)) 3px 4px,
+		linear-gradient(90deg, var(--color-window-text) 1px, var(--color-window-text)) 3px 5px,
+		linear-gradient(90deg, var(--color-window-text) 1px, var(--color-window-text)) 1px 3px,
+		linear-gradient(90deg, var(--color-window-text) 1px, var(--color-window-text)) 2px 3px,
+		linear-gradient(90deg, var(--color-window-text) 1px, var(--color-window-text)) 4px 3px,
+		linear-gradient(90deg, var(--color-window-text) 1px, var(--color-window-text)) 5px 3px;
+
+	// prettier-ignore
+	--tree-icon-expanded:
+		linear-gradient(90deg, var(--color-window-text) 1px, var(--color-window-text)) 1px 3px,
+		linear-gradient(90deg, var(--color-window-text) 1px, var(--color-window-text)) 2px 3px,
+		linear-gradient(90deg, var(--color-window-text) 1px, var(--color-window-text)) 3px 3px,
+		linear-gradient(90deg, var(--color-window-text) 1px, var(--color-window-text)) 4px 3px,
+		linear-gradient(90deg, var(--color-window-text) 1px, var(--color-window-text)) 5px 3px;
+}

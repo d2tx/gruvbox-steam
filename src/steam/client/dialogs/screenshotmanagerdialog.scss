@@ -1,0 +1,40 @@
+@use "shared/controls";
+
+// Screenshot share dialog, in the same CSS module...
+
+#CaptionField {
+	@include controls.text-field;
+}
+
+#CloudStorageImpact {
+	color: inherit;
+	font: inherit;
+	font-weight: bold;
+}
+
+#ScreenshotShareDialog {
+	gap: var(--dialog-spacing);
+	margin: var(--dialog-spacing);
+
+	.DialogHeader {
+		margin: calc(var(--dialog-spacing) * -1);
+		margin-bottom: 0;
+	}
+}
+
+#ShareDialogRow {
+	gap: var(--dialog-spacing);
+
+	align-items: start;
+	flex-direction: column;
+
+	#Label {
+		color: inherit;
+		font: inherit;
+	}
+}
+
+#SpoilerField,
+#VisibilityField {
+	gap: var(--label-spacing);
+}

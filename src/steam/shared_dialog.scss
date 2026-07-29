@@ -1,0 +1,454 @@
+@use "shared/controls";
+@use "shared/generatedassets";
+@use "shared/listbox";
+@use "shared/tabs";
+@use "shared/text";
+@use "shared/window";
+@use "shared++/utils";
+@use "steam/shared";
+
+:where(.DialogBody) {
+	@include tabs.content;
+
+	mask-image: none; // client settings
+	font: var(--text-ui);
+	margin: 0;
+	gap: var(--text-spacing);
+
+	overflow: auto;
+
+	// "In Game" settings tab
+	& > .DialogSubHeader {
+		position: unset;
+	}
+
+	a {
+		@include text.link;
+	}
+}
+
+.DialogBodyText {
+	@include utils.text-reset;
+
+	padding: 0;
+	margin-bottom: var(--text-spacing);
+}
+
+:where(.DialogButton) {
+	@include controls.button($disabled-sel: "&.Disabled");
+
+	background-image: none;
+
+	&.Primary {
+		min-width: 111px;
+	}
+
+	&::before {
+		opacity: 1;
+		box-shadow: none;
+	}
+}
+
+.DialogCheckbox {
+	@include controls.checkbox(
+		$checked-sel: "&.Active",
+		$disabled-sel: "&.Disabled"
+	);
+
+	margin: 0;
+
+	flex-shrink: 0;
+
+	&.Disabled {
+		opacity: 1;
+		filter: none;
+	}
+
+	& > svg {
+		display: none;
+	}
+}
+
+.DialogCheckbox_Container {
+	@include text.input-label;
+
+	background-color: transparent;
+	box-shadow: none;
+	padding: 0;
+	margin-bottom: var(--text-spacing);
+}
+
+:where(.DialogContent) {
+	background: transparent;
+	font: var(--text-ui);
+	padding: var(--dialog-spacing);
+	padding-bottom: calc(
+		var(--statusbar-height) + var(--window-gap) + var(--dialog-spacing)
+	);
+
+	.DialogContentTransition > & {
+		--dialog-spacing: 0px;
+	}
+}
+
+.DialogContentTransition {
+	background: transparent;
+}
+
+.DialogControlsSection {
+	@include controls.groupbox;
+
+	gap: var(--text-spacing);
+
+	display: flex;
+	flex-direction: column;
+
+	& > .DialogBodyText {
+		@include utils.legend-as-div;
+	}
+}
+
+.DialogControlsSectionHeader {
+	@include utils.text-reset;
+	@include utils.legend-as-div;
+}
+
+.DialogDropDown {
+	@include controls.combobox;
+
+	display: flex;
+	align-items: center;
+	min-width: 129px;
+}
+
+.DialogDropDown_Arrow {
+	display: none;
+}
+
+.DialogDropDown_CurrentDisplay {
+	background-color: transparent;
+	padding: 0;
+}
+
+:where(.DialogFooter) {
+	padding-top: var(--dialog-button-spacing);
+}
+
+:where(.DialogHeader) {
+	font-size: var(--text-ui-size);
+	font-weight: bold;
+	text-transform: unset;
+	padding: 0;
+	margin: 0;
+
+	.PopupFullWindow > :last-child & {
+		@include shared.dialog-title;
+
+		html[browsertype="DirectHWND"] & {
+			display: none;
+		}
+	}
+
+	// About Steam dialog
+	svg {
+		display: none;
+	}
+}
+
+// Only used in "Invite to group chat" dialog
+.DialogHeaderSubtitle {
+	color: inherit;
+	letter-spacing: 0;
+	font: inherit;
+	margin-left: var(--text-spacing);
+
+	&::before {
+		content: open-quote;
+	}
+
+	&::after {
+		content: close-quote;
+	}
+}
+
+.DialogInnerBody {
+	padding: 0;
+
+	overflow: visible;
+}
+
+.DialogInput {
+	@include controls.text-field;
+
+	height: unset;
+}
+
+.DialogInputLabelGroup {
+	margin: 0;
+}
+
+.DialogInput_Wrapper {
+	gap: var(--dialog-button-spacing);
+}
+
+:where(.DialogLabel) {
+	font: var(--text-ui);
+	color: inherit;
+	text-transform: unset;
+	margin: 0;
+}
+
+.DialogMenuPosition ._DialogInputContainer {
+	@include listbox.container;
+
+	font: var(--text-ui);
+	box-shadow: none;
+	padding: 0;
+}
+
+.DialogRoundCheckboxField {
+	margin-right: var(--label-spacing);
+
+	width: unset;
+	height: unset;
+}
+
+.DialogRoundCheckboxField_Control {
+	@include controls.radio($checked-sel: "&.Active");
+}
+
+.DialogRoundCheckboxField_OuterCircle {
+	display: none;
+}
+
+.DialogSlider_Container {
+	background-color: transparent;
+}
+
+.DialogSlider_Grabber {
+	box-shadow: none;
+}
+
+.DialogSlider_Slider {
+	@include controls.slider(
+		$thumb-sel: ".DialogSlider_Grabber",
+		$track-sel: ".DialogSlider_Value"
+	);
+
+	box-shadow: none;
+}
+
+.DialogSubHeader {
+	@include utils.text-reset;
+	@include utils.legend-as-div;
+}
+
+:where(.DialogToggle_Description) {
+	color: var(--color-gray-text);
+	font: var(--text-ui);
+	padding-block-start: var(--text-spacing);
+}
+
+.DialogToggle_Label {
+	font: var(--text-ui);
+	color: inherit;
+}
+
+:where(.DialogToggleField) {
+	background: none;
+	color: inherit;
+	gap: var(--label-spacing);
+	padding: 0;
+
+	flex-direction: row-reverse;
+	align-items: start;
+	justify-content: start;
+}
+
+:where(.DialogToggleField_NewUIContainer) {
+	height: unset;
+}
+
+._DialogColLayout {
+	gap: var(--dialog-button-spacing);
+
+	justify-content: end;
+
+	& > ._DialogLayout {
+		flex: 0;
+	}
+}
+
+// In-client/page dialog
+.FullModalOverlay {
+	.DialogBody {
+		box-shadow: none;
+	}
+
+	.DialogContent {
+		@include window.container($child: true);
+	}
+
+	.DialogHeader {
+		@include window.titlebar($focused-sel: "&");
+
+		// "Mark as Private" dialog
+		div:not(.DialogHeader) {
+			display: none;
+		}
+	}
+}
+
+.GenericConfirmDialog {
+	padding: 0;
+
+	justify-content: start;
+
+	.DialogBody {
+		box-shadow: none;
+		gap: var(--messagebox-content-spacing);
+		padding: var(--messagebox-spacing);
+	}
+
+	.DialogBodyText {
+		margin-bottom: 0;
+	}
+}
+
+.ModalOverlayBackground {
+	display: none;
+}
+
+.ModalDialogPopup {
+	position: fixed;
+	inset: 0;
+}
+
+.ModalPosition {
+	background-image: none;
+
+	.PopupFullWindow > & {
+		height: calc(100% - var(--main-window-titlebar-height) - var(--window-gap));
+	}
+}
+
+.ModalPosition_Content {
+	@include utils.text-reset;
+
+	box-shadow: none;
+}
+
+.ModalPosition_Dismiss {
+	top: calc(var(--border-size) + var(--window-spacing) + 1px);
+	right: calc(var(--border-size) + var(--window-spacing) + 1px);
+
+	.closeButton {
+		@include controls.button;
+		@include window.titlebar-button;
+		@include window.titlebar-button-close;
+	}
+
+	svg {
+		display: none;
+	}
+}
+
+.ModalPosition_TopBar {
+	display: none;
+}
+
+.PopupFullWindow {
+	&:not(:only-child) {
+		@include shared.statusbar-alt;
+	}
+
+	&:only-child {
+		--statusbar-height: 0px;
+	}
+}
+
+.SettingsDialogSubHeader {
+	@include utils.text-reset;
+	@include utils.legend-as-div;
+}
+
+// Friends list
+.singleWindowFocusBar {
+	display: none;
+}
+
+.title-area {
+	@include window.titlebar($focused-sel: ".WindowFocus &");
+
+	position: unset;
+	min-height: var(--main-window-titlebar-height);
+	max-height: var(--main-window-titlebar-height);
+
+	html[browsertype="DirectHWND"] & {
+		display: none;
+	}
+
+	.WindowFocus & {
+		--color-inactive-caption-bg-start: var(--color-active-caption-bg-start);
+		--color-inactive-caption-bg-end: var(--color-active-caption-bg-end);
+		--color-inactive-caption-text: var(--color-active-caption-text);
+	}
+
+	&::before {
+		content: "";
+
+		width: var(--icon-size);
+		height: var(--icon-size);
+
+		background-color: currentColor;
+		mask: icon("steam");
+	}
+}
+
+// Used only in overlay browser ? (in theme also used in main window)
+.title-area-children {
+	@include window.titlebar-name;
+
+	font-size: var(--text-ui-size);
+	color: var(--color-inactive-caption-text);
+	text-align: start;
+	// Overlay browser
+	padding: 0;
+}
+
+:where(.title-area-icon) {
+	@include controls.button;
+	@include window.titlebar-button;
+
+	width: unset;
+
+	&.minimizeButton {
+		@include window.titlebar-button-minimize;
+	}
+
+	&.maximizeButton {
+		@include window.titlebar-button-maximize;
+	}
+
+	&.restoreButton {
+		@include window.titlebar-button-restore;
+	}
+
+	&.closeButton {
+		@include window.titlebar-button-close;
+	}
+}
+
+.title-area-icon-inner {
+	display: none;
+}
+
+.title-area-highlight {
+	display: none;
+}
+
+.window_resize_grip {
+	@include window.resize-handle;
+
+	opacity: 1;
+}

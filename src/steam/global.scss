@@ -1,0 +1,93 @@
+@use "shared/window";
+@use "shared++/global";
+@use "shared++/scrollbar";
+
+:where(:root) {
+	--appdetails_container-spacing-x: 10px;
+	--appdetails_container-spacing-y: 4px;
+	--appdetails_highlight-img-size: 80px;
+
+	--deckverified_color-compatible: light-dark(blue, lightblue);
+	--deckverified_color-playable: light-dark(#880, yellow);
+	--deckverified_color-unsupported: var(--color-gray-text);
+	--deckverified_color-verified: light-dark(green, lightgreen);
+
+	--gamelistentry_container-padding: 3px 0;
+	--gamelistentry_container-container-padding-block: 2px;
+	--gamelistentry_tree-border-inset-top: -11px;
+
+	--library_section-display: grid;
+	--library_section-header-width: 200px;
+	--library_section-rows: var(--library_section-header-width)
+		calc(100% - var(--library_section-header-width));
+	--library_section-spacing: 8px;
+
+	// other
+	--achievementiconbase_size: 48px;
+	--commentthread_display: flex;
+	--steamavatar_size: max(32px, 2rlh);
+	--steamdesktop_icon-button-size: var(--combobox-button-height);
+
+	&[browsertype="DirectHWND"] {
+		--main-window-titlebar-height: 0px;
+		--main-window-border-spacing: 0px;
+	}
+}
+
+::-webkit-scrollbar-button {
+	display: initial;
+}
+
+::-webkit-scrollbar-thumb {
+	border: none;
+	border-radius: 0;
+}
+
+b {
+	font-family: var(--text-ui-font);
+}
+
+body {
+	@include window.container;
+
+	html[browsertype="DirectHWND"] & {
+		box-shadow: none;
+	}
+}
+
+// Many components for friend stuff use these classes
+$-status-colors: (
+	ingame: green,
+	offline: gray,
+	online: blue,
+);
+
+@each $k, $v in $-status-colors {
+	.#{$k} {
+		--status-color: light-dark(#{$v}, light#{$v});
+	}
+}
+
+// Revert everything in mini profile tooltip, since it will look like absolute
+// ass on light theme anyway
+.miniProfileHover {
+	box-shadow: none;
+	padding: 0;
+
+	* {
+		box-sizing: content-box;
+	}
+
+	.avatar {
+		width: calc(100% - 2px);
+		height: calc(100% - 2px);
+	}
+
+	.avatarHolder {
+		--steamavatar_size: 92px;
+	}
+
+	.friendPlayerLevel {
+		border-radius: 50%;
+	}
+}

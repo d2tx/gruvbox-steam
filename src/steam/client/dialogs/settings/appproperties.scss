@@ -1,0 +1,282 @@
+@use "shared/controls";
+@use "shared/table";
+@use "shared/text";
+@use "shared/window";
+@use "shared++/utils";
+
+#AppProperties {
+	height: calc(
+		100% - var(--main-window-titlebar-height) - var(--dialog-spacing) *
+			2 - var(--window-gap)
+	);
+}
+
+#AsyncBackedInputChildren {
+	margin: 0;
+}
+
+#BetaHeaderRow {
+	@extend #BetaRow;
+
+	color: var(--color-gray-text);
+	font: var(--text-ui);
+	text-transform: none;
+	padding: 0;
+	margin: 0;
+	margin-block-start: 8px;
+
+	#BetaName {
+		color: inherit;
+	}
+}
+
+#BetaLabel {
+	color: var(--color-button-text);
+	font-weight: bold;
+}
+
+#BetaLastUpdated {
+	margin: 0;
+
+	align-items: start;
+	justify-content: start;
+}
+
+#BetaName {
+	color: var(--color-button-text);
+	font: var(--text-ui);
+	margin: 0;
+
+	#DescText {
+		color: var(--color-gray-text);
+	}
+}
+
+#BetaRadioButton {
+	border: none;
+
+	align-items: start;
+	width: var(--sel-button-size);
+
+	input[type="radio"] {
+		@include controls.radio($checked-sel: "&:checked");
+	}
+}
+
+#BetaRow {
+	background: none;
+	gap: var(--label-spacing);
+
+	display: grid;
+	grid-template-columns: var(--sel-button-size) repeat(2, 1fr);
+}
+
+#BetasTable {
+	background: none;
+	font: var(--text-ui);
+	border: none;
+	box-shadow: none;
+	gap: var(--text-spacing);
+}
+
+#BlueHighlight {
+	@include utils.text-reset;
+}
+
+#BuildInfo {
+	@include utils.text-reset;
+}
+
+#Detail {
+	@include utils.text-reset;
+
+	margin: 0;
+}
+
+#SectionTopLine {
+	@include controls.groupbox;
+}
+
+#TopGap {
+	margin-top: var(--text-spacing);
+}
+
+#TopGapSmall {
+	margin: 0;
+}
+
+// DLC
+#DlcGrid {
+	// 7px = --dialog-spacing, but .DialogContentTransition > .DialogContent
+	// sets it to 0px
+	--dialog-offset: calc(
+		var(--main-window-border-spacing) + var(--border-size) +
+			var(--tabpanel-spacing) + 7px
+	);
+	--text-field-height: calc(
+		1rlh + var(--input-spacing) * 2 + var(--border-size) * 2
+	);
+
+	--inset-inline: var(--dialog-offset);
+	--inset-block-start: calc(
+		var(--dialog-offset) + var(--main-window-titlebar-height) +
+			var(--text-field-height) + var(--text-spacing)
+	);
+	--inset-block-end: calc(
+		var(--dialog-offset) + var(--statusbar-height) + var(--window-gap) * 2
+	);
+	// 160px = min-width of #pagedsettings_PagedSettingsDialog_PageListColumn
+	--inset: var(--inset-block-start) var(--inset-inline) var(--inset-block-end)
+		calc(var(--inset-inline) + 160px);
+
+	@include utils.content-container-alt;
+
+	font-size: var(--text-ui-size);
+	border: none;
+	box-shadow: none;
+}
+
+#DlcHeader {
+	@include controls.button;
+	@include table.button;
+
+	text-transform: unset;
+
+	&:has(> #TriangleUp) {
+		@include table.button-arrow-ascending;
+	}
+
+	&:has(> #TriangleDown) {
+		@include table.button-arrow-descending;
+	}
+
+	&:has(> #TriangleHide)::after {
+		display: none;
+	}
+
+	& > div {
+		display: none;
+	}
+}
+
+#DlcTopRow > .DialogInput_Wrapper {
+	margin-left: var(--text-spacing);
+}
+
+#Name {
+	@include utils.text-reset;
+}
+
+// Workshop
+#Controls {
+	& > .DialogButton {
+		--button-img: icon("clear");
+		@include controls.icon-button;
+
+		width: unset;
+
+		svg {
+			display: none;
+		}
+	}
+}
+
+#Details {
+	& > :first-child {
+		width: 88px;
+
+		display: flex;
+		justify-content: center;
+	}
+}
+
+#DragHandle {
+	opacity: 1;
+	color: var(--color-window-text);
+
+	left: 80%;
+}
+
+#LoadOrder,
+#SortedColumn {
+	font: var(--text-ui);
+	color: var(--color-window-text);
+}
+
+#TextDetails {
+	background-color: transparent;
+	color: var(--color-window-text);
+}
+
+#Title {
+	@include utils.text-reset;
+	@include utils.legend-as-div;
+}
+
+#WorkshopItemsRowsScrollable {
+	@include window.content-container;
+
+	font: var(--text-ui);
+	margin: 0;
+}
+
+#WorkshopItemRowsScroll {
+	border: none;
+	box-shadow: none;
+}
+
+#WorkshopItemRow {
+	filter: none;
+	background-color: var(--color-window);
+	box-shadow: none;
+
+	&#IsDragging {
+		background-color: var(--color-highlight);
+		--color-window-text: var(--color-highlight-text);
+	}
+}
+
+#WorkshopItemDependencies,
+#WorkshopItemTagsContainer {
+	background-color: transparent;
+	font: var(--text-ui);
+	color: var(--color-gray-text);
+}
+
+// etc.
+#BrowseDiskRow {
+	gap: var(--text-spacing);
+
+	& > .DialogButton {
+		order: -1;
+	}
+}
+
+#BrowseDiskSize {
+	margin-left: 0;
+}
+
+#SteamCloudSection {
+	gap: var(--text-spacing);
+}
+
+#SteamCloudUsage {
+	align-self: start;
+}
+
+#SteamInputLink {
+	@include text.link;
+}
+
+#ViewMore {
+	@include text.link;
+
+	padding: 0;
+
+	flex: 0 0 auto;
+
+	&,
+	&:focus {
+		box-shadow: none;
+	}
+}

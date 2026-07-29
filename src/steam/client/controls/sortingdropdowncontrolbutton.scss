@@ -1,0 +1,9 @@
+@use "shared/controls";
+
+#SortingDropDownControlButton {
+	@include controls.combobox;
+
+	svg {
+		display: none;
+	}
+}

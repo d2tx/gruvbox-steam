@@ -1,0 +1,31 @@
+@use "shared/table";
+@use "shared/window";
+@use "shared++/utils";
+
+.FriendNotificationsDialog .SettingsGroup {
+	@include window.content-container;
+}
+
+.FriendsSettingsNotificationRow {
+	background-color: transparent;
+	color: var(--color-window-text);
+	font-size: var(--text-ui-size);
+	padding: 0;
+	margin: 0;
+
+	display: flex;
+}
+
+.FriendsSettingsNotificationRow_Header {
+	& > div {
+		@include table.header-row;
+	}
+}
+
+.FriendsSettingsNotificationRow_Checkbox,
+.FriendsSettingsNotificationRow_Label {
+	@include utils.text-reset;
+
+	text-align: start;
+	padding: 2px 5px;
+}

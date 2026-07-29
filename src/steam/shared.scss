@@ -1,0 +1,206 @@
+@use "shared/controls";
+@use "shared/table";
+@use "shared/window";
+@use "shared++/utils";
+
+/// The browser view is above everything else. Used for single element browser
+/// views.
+@mixin browser-view-host {
+	margin-left: var(--border-size);
+	margin-top: var(--border-size);
+
+	position: relative;
+	width: calc(100% - var(--border-size) * 2);
+
+	&::before {
+		content: "";
+
+		position: absolute;
+		inset: calc(var(--border-size) * -1);
+
+		@include window.content-container;
+	}
+}
+
+@mixin dialog-title {
+	--offset: var(--main-window-border-spacing);
+
+	color: var(--color-inactive-caption-text);
+	font: var(--text-ui);
+	font-weight: bold;
+
+	display: flex;
+	align-items: center;
+	position: fixed;
+	left: calc(var(--offset) + var(--icon-size) + var(--titlebar-spacing) + 2px);
+	top: var(--offset);
+	height: var(--main-window-titlebar-height);
+
+	.WindowFocus & {
+		color: var(--color-active-caption-text);
+	}
+}
+
+/// An `--inset` value for generic dialogs for usage with
+/// `utils.content-container-alt`.
+@mixin generic-dialog-content-container-offset {
+	--dialog-offset: calc(
+		var(--main-window-border-spacing) + var(--dialog-spacing)
+	);
+	--inset-inline: var(--dialog-offset);
+	--inset-block-start: calc(
+		var(--dialog-offset) + var(--main-window-titlebar-height) + 1lh +
+			var(--text-spacing)
+	);
+	--inset-block-end: calc(
+		var(--dialog-offset) + var(--statusbar-height) + var(--window-gap) * 2 +
+			1lh + var(--button-spacing) * 2 + var(--dialog-button-spacing)
+	);
+	--inset: var(--inset-block-start) var(--inset-inline) var(--inset-block-end)
+		var(--inset-inline);
+}
+
+@mixin icon-mono-button($disabled-sel: "&:disabled") {
+	--offset-click: 0;
+	min-width: var(--icon-button-width);
+	height: var(--icon-button-height);
+
+	&:active {
+		--offset-click: 1px;
+		background: var(--checkerboard);
+		box-shadow: var(--border-button-sunken);
+	}
+
+	#{$disabled-sel} {
+		&::before {
+			background-color: var(--color-gray-text);
+		}
+
+		&::after {
+			@include utils.pseudo-icon;
+
+			--offset-disabled: 1px;
+			top: var(--offset-disabled);
+			left: var(--offset-disabled);
+
+			background-color: var(--color-button-highlight);
+		}
+	}
+
+	&::before {
+		@include utils.pseudo-icon;
+
+		top: var(--offset-click);
+		left: var(--offset-click);
+		z-index: 1;
+
+		background-color: var(--color-button-text);
+	}
+}
+
+@mixin library_drag-handle {
+	@include controls.drag-handle;
+
+	opacity: 1;
+
+	position: absolute;
+	left: calc(var(--appdetails_container-spacing-x) / 2 - 2px);
+	height: calc(100% - var(--appdetails_container-spacing-y) * 2);
+
+	&::before {
+		content: "";
+
+		position: absolute;
+		inset: calc(var(--appdetails_container-spacing-y) * -1);
+	}
+}
+
+@mixin library_in-toolbar {
+	margin-inline: var(--toolbar-container-spacing);
+
+	position: fixed;
+	position-anchor: --librarymainpanel;
+	top: anchor(top);
+}
+
+@mixin library_section {
+	display: var(--library_section-display);
+	grid-template-columns: var(--library_section-rows);
+}
+
+@mixin library_section-content {
+	color: var(--color-window-text);
+	padding: var(--appdetails_container-spacing-y)
+		var(--appdetails_container-spacing-x);
+}
+
+@mixin library_section-header {
+	@include table.header-row;
+
+	// A bit more spacing to account for the huge amounts of content there is
+	padding: var(--appdetails_container-spacing-y)
+		var(--appdetails_container-spacing-x);
+}
+
+@mixin statusbar-alt {
+	&::after {
+		content: "";
+
+		--offset: var(--main-window-border-spacing);
+		position: fixed;
+		inset: var(--offset);
+		top: unset;
+		height: calc(1lh + 2px);
+
+		@include window.statusbar-item;
+	}
+}
+
+@mixin table-button-arrows {
+	&:has([d="M17.98 26.54L3.20996 11.77H32.75L17.98 26.54Z"]) {
+		@include table.button-arrow-ascending;
+	}
+
+	&:has([d="M17.98 10.23L3.20996 25H32.75L17.98 10.23Z"]) {
+		@include table.button-arrow-descending;
+	}
+}
+
+@mixin pageable-container-button {
+	--button-img-size: 5px 9px;
+	--button-img-pos: 7px 6px;
+	@include controls.button($disabled-sel: "&#Disabled");
+	@include controls.icon-button;
+
+	opacity: 1;
+
+	// TODO(shared/window): unify when I can afford to make these icons
+
+	&::before {
+		z-index: 1;
+	}
+
+	&#Disabled {
+		pointer-events: none;
+
+		&::before {
+			background: var(--color-button-text);
+			mask: var(--button-img, none) no-repeat;
+			mask-size: var(--button-img-size, auto auto);
+			mask-position: var(--button-img-pos, center);
+		}
+
+		&::after {
+			@include utils.pseudo-icon;
+
+			left: 1px;
+			top: 1px;
+
+			background-color: var(--color-button-highlight);
+		}
+	}
+
+	svg {
+		display: none;
+	}
+}

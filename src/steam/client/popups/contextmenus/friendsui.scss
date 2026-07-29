@@ -1,0 +1,47 @@
+@use "shared++/utils";
+@use "shared/menu";
+
+// Context menu window
+.ContextMenuPopupBody {
+	box-shadow: none;
+	padding: 0;
+}
+
+.contextMenuSectionContent {
+	&::after {
+		@include utils.pseudo-separator;
+	}
+
+	.menuChecked {
+		@include menu.item-radio;
+	}
+}
+
+// "Do Not Disturb"
+.friendsContextMenu {
+	.DialogCheckbox {
+		display: none;
+	}
+
+	.DialogCheckbox_Container {
+		margin: 0;
+	}
+}
+
+.persona_menu_descriptor,
+.persona_menu_dnd_descriptor {
+	font: var(--text-ui);
+	color: var(--color-gray-text);
+	padding: 0;
+}
+
+// Friend
+.contextMenuGameTitle,
+.contextMenuGameOptions svg {
+	display: none;
+}
+
+.contextMenuGameOptions,
+.contextMenuUnselectable {
+	background-color: transparent;
+}

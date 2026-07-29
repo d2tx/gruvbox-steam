@@ -1,0 +1,60 @@
+@use "shared/text";
+@use "shared++/utils";
+@use "steam/shared";
+
+#EventBackgroundBlur {
+	display: none;
+}
+
+#EventCoverImageBackground {
+	background-position-y: 0;
+	margin-block-start: 0;
+	margin-inline-start: var(--library_section-header-width);
+
+	position: absolute;
+	top: 0;
+	width: calc(100% - var(--library_section-header-width));
+
+	& ~ #LibraryEventBodyContainer {
+		margin-block-start: 219px;
+	}
+}
+
+#EventDetailsBody {
+	color: inherit;
+	font: inherit;
+
+	:where(& a) {
+		@include text.link;
+	}
+}
+
+#EventDetailsSubTitle {
+	color: inherit;
+	font: inherit;
+}
+
+#EventDetailTitle {
+	color: inherit;
+	font: inherit;
+	font-weight: bold;
+
+	&::before {
+		@include utils.pseudo-separator;
+
+		margin-block: calc(var(--appdetails_container-spacing-y) * 2);
+	}
+}
+
+#EventDetailTitleContainer {
+	background: none;
+	padding: 0;
+}
+
+#LibraryEventBodyContainer {
+	@include shared.library_section-content;
+}
+
+#LibraryEventTitleContainer {
+	@include shared.library_section-header;
+}

@@ -1,0 +1,16 @@
+#BackupAppsContent {
+	gap: var(--dialog-button-spacing);
+}
+
+#BackupAppsDialog {
+	min-width: 400px;
+
+	.DialogBody {
+		padding: 0;
+		margin: var(--messagebox-content-spacing) 0;
+	}
+
+	.DialogHeader {
+		margin-bottom: var(--dialog-spacing);
+	}
+}

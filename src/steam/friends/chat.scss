@@ -1,0 +1,511 @@
+@use "shared/controls";
+@use "shared/list";
+@use "shared/tabs";
+@use "shared/text";
+@use "shared/window";
+@use "shared++/utils";
+
+// Just right click on the channel list
+.ChannelTypeTitle,
+// Just use the friends list
+.inviteAnotherFriendButton,
+// Just Shift+Click the scrollbar
+.ScrollToBottomButton {
+	display: none;
+}
+
+.chatDialogs {
+	@include tabs.content($compact: true);
+
+	background: none;
+	margin: 0 var(--dialog-spacing);
+	margin-bottom: calc(
+		var(--dialog-spacing) + var(--statusbar-height) + var(--window-gap)
+	);
+}
+
+.chatEntry {
+	background-color: transparent;
+	padding: 0;
+	margin-top: var(--window-gap);
+
+	svg {
+		display: none;
+	}
+}
+
+.chatFileUploadCancel {
+	@include controls.button;
+	@include window.titlebar-button;
+	@include window.titlebar-button-close;
+
+	top: 0;
+	right: calc(-260px + 16px + 8px + var(--main-window-border-spacing));
+	order: -1;
+
+	svg {
+		display: none;
+	}
+}
+
+.chatFileUploadFileName {
+	font: var(--text-ui);
+	font-weight: bold;
+	padding: 0;
+}
+
+.chatFileUploadPreview {
+	box-shadow: var(--border-statusbar);
+	padding: 1px;
+}
+
+.chatFileUploadPreviewContainer {
+	@include window.container($child: true);
+
+	gap: var(--text-spacing);
+
+	bottom: calc(var(--main-window-border-spacing) + 21px);
+	align-items: start;
+
+	& > * {
+		margin: 0;
+		margin-left: 4px;
+	}
+}
+
+.chatHeader {
+	background: none;
+
+	min-height: 0;
+}
+
+.ChatHistoryContainer {
+	@include window.content-container;
+}
+
+.ChatMessageEntryVoice {
+	@include controls.icon-button;
+
+	opacity: 1;
+	border: none;
+	box-shadow: none;
+	padding: 0;
+	margin-inline: 0 var(--toolbar-spacing);
+
+	order: -1;
+}
+
+.chatRoomButton {
+	@include controls.button;
+	@include controls.icon-button;
+
+	width: unset;
+
+	&.GroupChatSettings {
+		--button-img: icon("settings");
+	}
+
+	&.InviteToGroupChat {
+		--button-img: icon("room-invite");
+		margin-right: var(--toolbar-spacing);
+
+		order: -1;
+	}
+
+	&.ManageNotifications {
+		--button-img: icon("newspaper");
+	}
+
+	svg {
+		display: none;
+	}
+}
+
+.chatRoomChannelGroups {
+	overflow: auto;
+	height: 100%;
+
+	&::-webkit-scrollbar {
+		display: initial;
+	}
+}
+
+.chatRoomChannelsGroup {
+	color: var(--color-window-text);
+}
+
+.chatRoomGroupHeader {
+	border: none;
+	padding: 4px calc(var(--border-size) + 4px);
+}
+
+.chatRoomGroupNavColumn {
+	@include window.content-container;
+
+	margin-right: var(--window-gap);
+}
+
+.chatRoomGroupStats {
+	@include window.statusbar;
+
+	flex-direction: row;
+
+	.statCircle {
+		display: none;
+	}
+
+	.statMemberStat {
+		@include window.statusbar-item;
+		@include utils.text-reset;
+
+		margin: 0;
+
+		&[title] {
+			font-size: 0;
+
+			&::before {
+				content: attr(title);
+
+				font-size: var(--text-ui-size);
+			}
+		}
+
+		&:last-child {
+			flex-grow: 1;
+		}
+	}
+}
+
+// Yes...it's a capital letter.
+.chatRoomGroupHeader .ChatRoomGroupAvatar,
+.chatRoomGroupHeaderNameandTag,
+.chatRoomGroupNavCollapseExpand {
+	display: none;
+}
+
+.chatRoomMembers {
+	@include window.content-container;
+
+	border: none;
+
+	// TODO: unify with game library
+	.groupName {
+		position: absolute;
+	}
+}
+
+.chatRoomTextChannel {
+	color: inherit;
+	padding: 4px;
+
+	&.ActiveTextChannel {
+		@include list.item-name-selected;
+	}
+}
+
+.chatRoomTextChannelIcon {
+	display: none;
+}
+
+.chatRoomTextChannelName {
+	@include utils.text-reset;
+
+	margin: 0;
+}
+
+.ChatTabContextMenuItem {
+	min-height: unset;
+
+	// TODO(port): fix selector, but where do I even find this lmao
+	// !important in ../imports/chattabs.scss
+	#popup_target & > div {
+		background-color: unset;
+		border: none;
+		box-shadow: none;
+		padding: 0;
+
+		height: unset;
+
+		&::before,
+		&::after {
+			display: none;
+		}
+	}
+
+	.friend {
+		padding: 0;
+		margin: 0;
+
+		height: unset;
+	}
+}
+
+.ChatTabs {
+	background-color: transparent;
+	box-shadow: none;
+	border: none;
+	padding: 0;
+
+	.HorizontalMiniSlider {
+		overflow: visible;
+	}
+
+	.HorizontalMiniSliderScroll {
+		overflow: visible;
+
+		&::-webkit-scrollbar {
+			display: none;
+		}
+	}
+
+	.labelHolder {
+		margin: 0;
+
+		height: unset;
+	}
+}
+
+.chatTabSetContainer {
+	padding-right: 0;
+	margin: var(--dialog-spacing);
+	margin-bottom: 0;
+
+	align-items: center;
+	justify-content: space-between;
+}
+
+// TODO: this goes out of bounds with too many tabs
+.chatTabSelector {
+	--button-img: icon("arrow-bottom", "mono");
+	@include controls.button;
+	@include controls.icon-button;
+
+	background-image: none;
+
+	width: unset;
+
+	// TODO: unify
+	svg {
+		display: none;
+	}
+}
+
+.chatWindow {
+	background: none;
+	font: var(--text-ui);
+
+	inset: calc(var(--border-size) + var(--tabpanel-spacing));
+}
+
+.dropTargetBox {
+	transform: unset;
+	border-color: var(--color-highlight);
+}
+
+.chatRoomGroupStats,
+.FriendChatTypingNotification {
+	--pos: var(--main-window-border-spacing);
+
+	position: fixed;
+	left: var(--pos);
+	bottom: var(--pos);
+	width: calc(100% - var(--pos) * 2);
+}
+
+.FriendChatTypingNotification {
+	@include window.statusbar-item;
+
+	opacity: 1;
+	background: none;
+	color: var(--color-button-text);
+
+	&:not(.FriendIsTyping) {
+		color: transparent;
+	}
+}
+
+.inviteButtonJoinChat {
+	background-image: none;
+
+	min-height: unset;
+}
+
+.inviteURLAndCopy {
+	gap: var(--dialog-button-spacing);
+	margin: 0;
+}
+
+.inviteURLContainer {
+	@include text.input-label;
+
+	.copyInviteLink {
+		--button-img: icon("link");
+		@include controls.button;
+		@include controls.icon-button;
+	}
+
+	svg {
+		display: none;
+	}
+}
+
+.inviteURLLink {
+	width: 100%;
+	min-width: unset;
+	max-width: unset;
+}
+
+.inviteURLLinkDesc {
+	@include utils.text-reset;
+
+	margin: 0;
+
+	align-self: unset;
+}
+
+.MemberListColumn {
+	margin-left: var(--window-gap);
+}
+
+.MemberListOption {
+	--button-img: icon("user-list");
+	@include controls.button;
+	@include controls.icon-button;
+
+	opacity: 1;
+
+	svg {
+		display: none;
+	}
+}
+
+.MemberListOptionsContainer {
+	margin-bottom: var(--window-gap);
+
+	height: unset;
+
+	.socialInputContainer {
+		margin: 0;
+		margin-left: var(--toolbar-spacing);
+	}
+}
+
+// TODO: looks like shit with current width
+.MemberListViewCompact {
+	.socialInputContainer {
+		display: none;
+	}
+}
+
+.msg {
+	background-color: transparent;
+	font: var(--text-ui);
+	padding-left: calc(var(--steamavatar_size) + 8px + 2px);
+
+	&.timeDivision {
+		@include utils.text-reset;
+
+		height: unset;
+		align-items: center;
+
+		.horizDivider,
+		.preHorizDivider {
+			@include controls.separator;
+
+			width: unset;
+			flex-grow: 1;
+		}
+	}
+}
+
+.msgText {
+	color: inherit;
+}
+
+.RenameChatRoomInline {
+	margin: 0;
+
+	width: 100%;
+}
+
+.speaker {
+	color: inherit;
+	font-size: var(--text-ui-size);
+}
+
+.speakerHoverArea {
+	align-items: center;
+}
+
+.speakerName {
+	color: inherit;
+	font-weight: bold;
+	margin: 0;
+}
+
+.speakerStatus {
+	height: var(--steamavatar_size);
+}
+
+.speakerTimeStamp {
+	@include utils.text-reset;
+
+	align-self: center;
+}
+
+.VoiceChatTextChannelDesc {
+	@include window.statusbar-item;
+
+	background-image: none;
+	font: var(--text-ui);
+	text-shadow: none;
+	text-align: unset;
+
+	position: unset;
+	height: unset;
+}
+
+.VoiceChatTextChannelName {
+	@include utils.text-reset;
+
+	font-weight: bold;
+}
+
+.VoiceRoomChatHistory {
+	background-color: transparent;
+}
+
+.VoiceRoomChatTitle {
+	@include window.titlebar($focused-sel: "&");
+
+	.MinimizeTextChat {
+		--button-img: icon("clear");
+		@include controls.button;
+		@include controls.icon-button;
+
+		opacity: 1;
+
+		right: 0;
+
+		svg {
+			display: none;
+		}
+	}
+}
+
+.VoiceRoomChatWindow {
+	@include window.container($child: true);
+
+	border: none;
+	gap: var(--window-gap);
+}
+
+.VoiceRoomTitleLabels {
+	margin-left: 0;
+}
+
+.VoiceToggle {
+	--button-img: icon("speaker-alt");
+	@include controls.button($disabled-sel: "&.Inactive");
+	@include controls.icon-button;
+}

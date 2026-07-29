@@ -1,0 +1,17 @@
+@use "shared++/utils";
+
+#EntryLabel {
+	padding-right: var(--text-spacing);
+}
+
+#EntryValue {
+	@include utils.text-reset;
+}
+
+#SteamGuardIcon {
+	color: red;
+
+	&#Enabled {
+		color: green;
+	}
+}

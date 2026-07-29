@@ -1,0 +1,53 @@
+@use "steam/shared";
+
+#EULAContent {
+	background-color: transparent;
+	line-height: 1.5;
+}
+
+#EulaDialogContent {
+	color: inherit;
+	font: inherit;
+
+	.DialogBodyText {
+		// TODO(shared): caused by .GenericConfirmDialog, see above
+		margin-block-end: var(--text-spacing);
+
+		min-height: 2lh;
+	}
+}
+
+#EulaModalDialog {
+	flex: 0;
+	min-height: 100%;
+}
+
+#EULAScrolling {
+	--dialog-offset: calc(
+		var(--main-window-border-spacing) + var(--dialog-spacing)
+	);
+
+	--inset-inline: var(--dialog-offset);
+	--inset-block-start: calc(
+		var(--dialog-offset) + var(--main-window-titlebar-height) + 2lh +
+			var(--text-spacing)
+	);
+	--inset-block-end: calc(
+		var(--dialog-offset) + var(--statusbar-height) + 1lh +
+			var(--button-spacing) * 2 + var(--dialog-button-spacing)
+	);
+	--inset: var(--inset-block-start) var(--inset-inline) var(--inset-block-end)
+		var(--inset-inline);
+
+	border: none;
+	box-shadow: none;
+
+	&::before {
+		// TODO(shared): drop messagebox vars ? only fucking brings me headaches
+		margin: 4px 3px;
+	}
+}
+
+#LanguageFieldContainer {
+	margin-block: var(--text-spacing);
+}

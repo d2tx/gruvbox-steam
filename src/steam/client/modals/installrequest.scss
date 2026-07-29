@@ -1,0 +1,125 @@
+@use "shared/controls";
+@use "shared/window";
+@use "shared++/utils";
+
+#AppLogo {
+	// x1.5, since I have more space anyway
+	width: 132px;
+	height: 60px;
+}
+
+#AppName {
+	@include utils.text-reset;
+}
+
+#AppsToInstall {
+	border: none;
+	margin: 0;
+
+	&::after {
+		content: "";
+
+		@include controls.separator;
+
+		margin: 8px 0;
+
+		width: 100%;
+		display: block;
+	}
+}
+
+#AppToInstall {
+	line-height: inherit;
+	border: none;
+	padding: 0;
+
+	align-items: center;
+}
+
+#CreateShortcuts {
+	gap: 0;
+	margin: 0;
+	margin-bottom: 12px;
+
+	flex-direction: column;
+}
+
+#DiskSpace {
+	@include utils.text-reset;
+}
+
+#FolderFlagStar {
+	margin: 0;
+	margin-top: -2px;
+}
+
+#FolderName {
+	color: inherit;
+}
+
+// TODO: .list-entry
+#FolderOption {
+	@include utils.text-reset;
+
+	background-color: transparent;
+	color: var(--color-window-text);
+	gap: var(--text-spacing);
+	padding: 0 3px;
+	margin: 0;
+
+	height: var(--text-ui-size);
+
+	&#Active {
+		background-color: var(--color-highlight);
+		color: var(--color-highlight-text);
+	}
+}
+
+#FolderSelector {
+	@include controls.groupbox;
+
+	& > :not([class]) {
+		@include window.content-container;
+	}
+}
+
+#FolderSettings {
+	--button-img: icon("overflow" . "mono");
+	@include controls.icon-button;
+
+	width: unset;
+
+	svg {
+		display: none;
+	}
+}
+
+#Header {
+	@include utils.legend-as-div;
+	@include utils.text-reset;
+}
+
+#NoticeInstallFolder {
+	gap: var(--messagebox-content-spacing);
+
+	&:not(:has(> :empty)) {
+		@include utils.text-reset;
+		@include controls.tooltip;
+
+		align-items: center;
+		justify-content: start;
+	}
+
+	#FolderFlag {
+		--icon-size: 32px;
+
+		background-image: icon("warning-32");
+
+		width: var(--icon-size);
+		height: var(--icon-size);
+
+		svg {
+			display: none;
+		}
+	}
+}

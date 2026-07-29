@@ -1,0 +1,47 @@
+@use "shared++/utils";
+
+#EventDaySeparator {
+	// TODO: vertical separators
+	margin: 0 16px;
+}
+
+#EventHeaderBlock {
+	color: var(--color-window-text);
+	font: var(--text-ui);
+}
+
+#GamePlaySummaryContainer {
+	margin: 0;
+
+	// #pageablecontainer_HeaderPageControls
+	& > div > div {
+		align-items: start;
+	}
+}
+
+#GamePlaySummaryHeader {
+	@include utils.text-reset;
+
+	margin-block: 4px;
+}
+
+#SummaryCarouselContainer {
+	background: none;
+	padding: var(--library_section-spacing);
+
+	&::after {
+		display: none;
+	}
+}
+
+#SummaryContainer {
+	margin: 0;
+}
+
+#SummaryScreenshot {
+	box-shadow: none;
+}
+
+#TypeSeparator {
+	width: 0;
+}

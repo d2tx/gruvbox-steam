@@ -1,0 +1,140 @@
+@use "shared/controls";
+@use "shared++/utils";
+
+%-separator {
+	padding-block: 0 8px;
+
+	&::after {
+		@include utils.pseudo-separator;
+
+		position: absolute;
+		inset-inline: 0;
+		inset-block-end: -2px;
+		width: 100%;
+	}
+}
+
+#BrowserTab {
+	@include controls.tab-button($selected-sel: "&#Active");
+
+	background-color: transparent;
+	gap: var(--tab-button-spacing);
+	border: none;
+
+	// New tab button
+	#BrowserTabs > & {
+		--button-img: icon("plus", "mono");
+		--icon-button-width: var(--tab-button-height);
+		--icon-button-height: var(--tab-button-height);
+		@include controls.button;
+		@include controls.icon-button;
+
+		svg {
+			display: none;
+		}
+	}
+}
+
+#BrowserTabIcon {
+	padding: 0;
+}
+
+#BrowserTabs {
+	@extend %-separator;
+
+	gap: var(--tab-button-spacing);
+
+	position: relative;
+}
+
+#BrowserViewHost {
+	// Draw the border ...
+	background: var(--color-window);
+	margin: var(--border-size);
+
+	position: relative;
+	width: calc(100% - var(--border-size) * 2);
+	height: calc(100% - var(--border-size) * 2);
+
+	&::before {
+		content: "";
+
+		position: absolute;
+		top: calc(var(--border-size) * -1);
+		left: calc(var(--border-size) * -1);
+		width: calc(100% + var(--border-size) * 2);
+		height: calc(100% + var(--border-size) * 2);
+
+		box-shadow: var(--border-field);
+	}
+}
+
+#CloseTabButton {
+	mask: icon("close", "mono") no-repeat center;
+	background-color: currentColor;
+	padding: 0;
+
+	width: var(--icon-size);
+	height: var(--icon-size);
+
+	path {
+		display: none;
+	}
+}
+
+#NavigationButton {
+	@include controls.button;
+	@include controls.icon-button;
+
+	&#Disabled {
+		@include controls.input-disabled;
+	}
+
+	&:nth-child(1) {
+		--button-img: icon("go-back");
+	}
+
+	&:nth-child(2) {
+		--button-img: icon("go-forward");
+	}
+
+	&:nth-child(3) {
+		--button-img: icon("reload");
+	}
+
+	&:nth-child(4) {
+		--button-img: icon("favorites");
+	}
+
+	&:nth-child(5) {
+		--button-img: icon("home");
+	}
+
+	svg {
+		display: none;
+	}
+}
+
+#TabTitle {
+	@include utils.text-reset;
+}
+
+#URLBar {
+	@extend %-separator;
+
+	background-color: transparent;
+	padding-inline: var(--toolbar-container-spacing);
+}
+
+#URLBarText {
+	padding: 0;
+	margin-left: var(--toolbar-spacing);
+
+	&::after {
+		display: none;
+	}
+
+	#StatusIcon {
+		display: none;
+	}
+}

@@ -1,0 +1,19 @@
+@use "shared/text";
+@use "shared++/utils";
+
+#SettingsDialogBodyText {
+	@include utils.text-reset;
+	@include utils.legend-as-div;
+}
+
+#SettingsDialogDescriptionText {
+	@include utils.text-reset;
+
+	margin: 0;
+}
+
+#SettingsLink {
+	@include text.link;
+
+	font: var(--text-ui);
+}

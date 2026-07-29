@@ -1,0 +1,67 @@
+@use "shared/tabs";
+@use "shared++/utils";
+
+#FixCenterAlignScroll {
+	background-color: transparent;
+	gap: 0;
+	padding: 0;
+	margin: 0;
+
+	overflow: visible;
+}
+
+#Glyphs {
+	display: none;
+}
+
+#Tab {
+	@include tabs.tab($selected-sel: "&#Selected");
+	@include utils.text-reset;
+}
+
+#TabHeaderRowWrapper,
+#TabContents {
+	top: calc(var(--steamavatar_size) + var(--text-spacing));
+}
+
+#TabContentsScroll {
+	@include tabs.content($compact: true);
+
+	margin: 0;
+	margin-top: var(--tabs-height);
+
+	// different classes but same outcome
+	& > div {
+		--spacing: 4px;
+		--inset: calc(var(--tabs-height) + var(--spacing)) var(--spacing)
+			var(--spacing) var(--spacing);
+
+		@include utils.content-container-alt;
+
+		// This has no effect anyway !
+		gap: 0;
+
+		overflow: auto;
+		height: calc(100% - var(--spacing));
+	}
+}
+
+#TabHeaderRowWrapper {
+	padding: 0;
+
+	&::before {
+		display: none;
+	}
+}
+
+#TabRowSpacer {
+	display: none;
+}
+
+#TabRowTabs {
+	@include tabs.container;
+}
+
+#TabsRowScroll {
+	mask-image: none;
+}

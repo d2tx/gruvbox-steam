@@ -1,0 +1,72 @@
+@use "shared/controls";
+@use "shared/window";
+@use "shared++/utils";
+
+#Buttons {
+	margin: 0;
+	gap: var(--dialog-button-spacing);
+}
+
+#Checkbox {
+	&:hover {
+		color: inherit;
+	}
+}
+
+#CompatDropDown {
+	padding-bottom: var(--text-spacing);
+
+	.DialogDropDown_CurrentDisplay {
+		width: unset;
+	}
+}
+
+#Container {
+	padding: var(--dialog-spacing);
+	margin-block-start: var(--window-gap);
+}
+
+#DropDownContainer {
+	box-shadow: none;
+}
+
+#DropDownItems {
+	font: var(--text-ui);
+}
+
+#FilterArea {
+	gap: 4px 8px;
+}
+
+#FilterBucket {
+	@include controls.groupbox;
+
+	.DialogInput_Wrapper {
+		margin: 0;
+	}
+}
+
+#FilterBucketBoxes {
+	padding: 0;
+
+	#SearchResultsBox & {
+		@include window.container($child: true);
+
+		svg {
+			display: none;
+		}
+	}
+}
+
+#FilterBucketLabel {
+	@include utils.legend-as-div;
+
+	font: var(--text-ui);
+	color: var(--color-button-text);
+	text-transform: unset;
+
+	// In collection view
+	#FilterArea#WideFormat & {
+		background-color: var(--color-window);
+	}
+}

@@ -1,0 +1,57 @@
+@use "shared/controls";
+
+$-icons: (
+	1: "windows",
+	2: "clock",
+	3: "checkmark",
+);
+
+#Arrow,
+#ScrollToTop {
+	display: none;
+}
+
+#Bar {
+	padding: 0;
+
+	circle {
+		stroke: var(--color-button-text);
+	}
+
+	svg {
+		fill: var(--color-button-text);
+	}
+}
+
+#CheckboxWithImage {
+	@include controls.button;
+	@include controls.icon-button($selected-sel: "&#Active");
+
+	@each $i, $img in $-icons {
+		&:nth-child(#{$i}) {
+			--button-img: icon(#{$img});
+		}
+	}
+
+	svg {
+		display: none;
+	}
+}
+
+#MenuHeader {
+	--text-field-height: calc(
+		1rlh + var(--input-spacing) * 2 + var(--border-size) * 2
+	);
+	@include controls.combobox;
+
+	margin: 0;
+
+	height: var(--text-field-height);
+
+	cursor: default;
+}
+
+#ViewFiltersBar {
+	margin: 0;
+	margin-left: var(--toolbar-spacing);
+}

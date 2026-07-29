@@ -1,0 +1,38 @@
+@use "shared/text";
+@use "shared++/utils";
+
+#ButtonsGroup {
+	gap: var(--dialog-button-spacing);
+}
+
+#CommentsContainer {
+	@include text.link;
+
+	font: inherit;
+
+	svg {
+		display: none;
+	}
+}
+
+#CommentCount,
+#CommentsLabel {
+	color: inherit;
+}
+
+#PlayedForTime {
+	@include utils.text-reset;
+}
+
+#ReviewPresentGroup {
+	gap: var(--text-spacing);
+}
+
+#ReviewText {
+	color: inherit;
+	font: inherit;
+}
+
+#VoteUpDownContainer {
+	padding: 0;
+}

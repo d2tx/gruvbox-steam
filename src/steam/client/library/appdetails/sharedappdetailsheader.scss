@@ -1,0 +1,31 @@
+#BoxSizerContainer {
+	inset: 32px;
+}
+
+#HeaderBackgroundImage {
+	transform: unset;
+}
+
+#ImgContainer {
+	height: 100%;
+}
+
+#ImgSrc {
+	image-rendering: auto;
+
+	&#ImgBlur {
+		height: 100%;
+	}
+
+	&#ImgBlurBackdrop {
+		display: none;
+	}
+
+	#ImgContainer & {
+		mask: none;
+	}
+}
+
+#TitleLogo {
+	image-rendering: auto;
+}

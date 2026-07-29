@@ -1,0 +1,22 @@
+#Container {
+	background-image: none;
+}
+
+#InnerContainer {
+	// for toolbar... ty valve
+	transform: unset;
+}
+
+#LibraryHome {
+	background: none;
+	color: var(--color-window-text);
+	padding: 0;
+
+	height: unset;
+}
+
+#UpdatesContainer {
+	--library_section-rows: 1fr;
+
+	@extend #LibraryHome;
+}

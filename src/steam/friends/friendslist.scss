@@ -1,0 +1,514 @@
+@use "shared/controls";
+@use "shared/tree";
+@use "shared/window";
+@use "shared++/utils";
+@use "steam/shared";
+
+.activeVoiceButtons {
+	padding: 0;
+
+	min-width: unset;
+}
+
+.activeVoiceButtonsSpacer {
+	display: none;
+}
+
+.activeVoiceControls {
+	background-color: transparent;
+	border: none;
+	margin-top: var(--window-gap);
+
+	height: var(--icon-button-height);
+
+	&::before {
+		display: none;
+	}
+
+	button {
+		@include controls.button;
+		@include controls.icon-button;
+
+		min-height: unset;
+
+		&.chatEndVoiceChat {
+			--button-img: icon("room-leave");
+		}
+
+		&.ToggleMicrophoneButton {
+			--button-img: icon("microphone");
+
+			&.NoMicrophone,
+			&.disabled {
+				--button-img: icon("microphone-muted");
+			}
+		}
+
+		&.ToggleVoiceOutputButton {
+			--button-img: icon("sound");
+
+			&.disabled {
+				--button-img: icon("sound-muted");
+			}
+		}
+	}
+}
+
+.activeVoiceFlexBox {
+	align-items: center;
+}
+
+// I already know it's a voice chat.
+.activeVoiceHeader,
+// I already know my PTT hotkey.
+.activeVoicePushToTalk {
+	display: none;
+}
+
+.activeVoiceName {
+	@include utils.text-reset;
+
+	font-weight: bold;
+}
+
+.activeVoiceLabels {
+	padding: 0;
+}
+
+.addFriendButton {
+	--button-img: icon("plus", "mono");
+	@include controls.button;
+	@include controls.icon-button;
+}
+
+.AvatarAndUser {
+	padding: 8px;
+}
+
+.ChatRoomList {
+	padding: 0;
+}
+
+.chatRoomListContainer {
+	background: none var(--color-window);
+	color: var(--color-window-text);
+}
+
+// Making .chatRoomListContainer use .content-container breaks resizing.
+.ChatRoomListContainerParent:not(.Collapsed) {
+	margin: var(--border-size);
+
+	position: relative;
+
+	&::before {
+		content: "";
+
+		position: absolute;
+		inset: calc(var(--border-size) * -1);
+		top: 28px;
+
+		pointer-events: none;
+
+		box-shadow: var(--border-field);
+	}
+}
+
+.ChatRoomListGroupItem {
+	&:hover .ChatRoomListGroupItem_header {
+		background-color: var(--color-highlight);
+		color: var(--color-highlight-text);
+	}
+}
+
+.chatRoomName {
+	@include utils.text-reset;
+}
+
+.chatSectionTitle {
+	background-color: transparent;
+	color: inherit;
+	text-transform: unset;
+	margin: calc(var(--window-gap) + var(--border-size)) 0;
+
+	height: unset;
+	align-items: center;
+
+	.createChatRoomButton,
+	.ToggleGroupChatList {
+		@include controls.button;
+		@include controls.icon-button;
+
+		svg {
+			display: none;
+		}
+	}
+
+	.createChatRoomButton {
+		--button-img: icon("room-create");
+	}
+
+	.groupChatSectionTitle {
+		@include utils.text-reset;
+
+		font-weight: bold;
+		padding: 0;
+	}
+
+	.ToggleGroupChatList {
+		--button-img: icon("arrow-bottom", "mono");
+		--button-img-size: 7px 4px;
+		--button-img-pos: center;
+
+		.Collapsed & {
+			--button-img: icon("arrow-top", "mono");
+		}
+	}
+
+	.voiceRoomDragBar {
+		order: -1;
+	}
+}
+
+.ConnectionTrouble {
+	height: unset;
+
+	.title-area {
+		display: none;
+	}
+}
+
+.ConnectionTroubleContent {
+	height: unset;
+}
+
+.ConnectionTroubleMessage {
+	@include shared.dialog-title;
+
+	text-shadow: none;
+}
+
+// This sounds crazy, but you can right click on your friends !
+.ContextMenuButton {
+	display: none;
+}
+
+.currentUserAvatar {
+	all: unset;
+}
+
+.currentUserContainer {
+	@include window.content-container;
+
+	border: none;
+
+	position: relative;
+
+	html:not([browsertype="DirectHWND"]) & {
+		margin-block-start: var(--window-gap);
+	}
+
+	.avatarHolder {
+		--steamavatar_size: 48px;
+	}
+
+	.labelHolder {
+		margin-top: 0;
+		margin-right: 0;
+	}
+
+	.statusHeaderGlow {
+		display: initial;
+		height: 100%;
+	}
+}
+
+// Make the titlebar background red if disconnected
+.errorDisconnected {
+	// TODO(shared): for 98 it's #6a0a0a & #f0a6a6
+	--color-active-caption-bg-start: #800;
+	--color-active-caption-bg-end: #800;
+
+	.tabLabel {
+		display: none;
+	}
+}
+
+.ExpandPlusMinus {
+	@include tree.item-icon;
+
+	margin: 0;
+	margin-right: var(--tree-spacing);
+
+	&::before {
+		inset-inline-start: 0;
+	}
+}
+
+.friendGroup {
+	border: none;
+	margin: 0;
+
+	&:first-child {
+		padding-top: 2px;
+
+		.ExpandPlusMinus::after {
+			border-left-color: transparent;
+		}
+	}
+
+	&:nth-last-child(2) {
+		& > :nth-child(2)::before {
+			display: none;
+		}
+	}
+
+	& > :nth-child(2) {
+		padding: 0;
+		margin-left: var(--icon-size);
+
+		position: relative;
+
+		&::before {
+			content: "";
+
+			position: absolute;
+			top: -7px;
+			left: -8px;
+			height: calc(100% + 10px);
+
+			border-left: 1px dotted var(--color-gray-text);
+		}
+	}
+
+	.groupCount {
+		@include utils.text-reset;
+	}
+
+	.gameGroupContainer {
+		align-items: center;
+		width: calc(9px + var(--tree-spacing) + var(--icon-size));
+		height: var(--icon-size);
+	}
+
+	.groupName {
+		align-items: center;
+	}
+
+	.groupIcon {
+		margin: 0;
+
+		width: var(--icon-size);
+		height: var(--icon-size);
+	}
+
+	.groupName {
+		@include tree.item($expanded-sel: "&:not(.Collapsed)");
+		@include utils.text-reset;
+
+		margin: 0;
+
+		z-index: 1;
+
+		&::before {
+			display: none;
+		}
+
+		hr {
+			display: none;
+		}
+	}
+}
+
+.friendlist {
+	gap: var(--window-gap);
+
+	.friend {
+		--avatar-size: max(32px, 2rlh);
+
+		@include tree.item($expanded-sel: "&.hack");
+
+		padding: 0;
+		margin-inline-start: 20px;
+		margin-block: 4px;
+
+		height: var(--avatar-size);
+
+		&:hover {
+			background-color: color-mix(
+				in srgb,
+				var(--status-color) 20%,
+				transparent
+			);
+		}
+
+		&::before {
+			top: calc(var(--avatar-size) / -2);
+			height: calc(var(--avatar-size) + 2px);
+		}
+
+		.avatarHolder {
+			--steamavatar_size: var(--avatar-size);
+		}
+
+		.labelHolder {
+			height: unset;
+		}
+	}
+
+	:where(& svg) {
+		display: none;
+	}
+}
+
+.friendsListContainer {
+	opacity: 1;
+}
+
+.friendlistListContainer {
+	@include window.content-container;
+	@include utils.move-scrollbar;
+
+	background-image: none;
+}
+
+.friendListFooter {
+	@include window.statusbar-item;
+
+	background-color: transparent;
+
+	min-height: unset;
+
+	&::before {
+		content: ".";
+
+		color: transparent;
+	}
+}
+
+.friendListHeaderContainer {
+	background-color: transparent;
+	box-shadow: none;
+
+	min-height: unset;
+}
+
+.friendRequestButton {
+	--button-img: icon("user-list");
+	@include controls.button;
+	@include controls.icon-button($selected-sel: "&.friendRequestViewActive");
+
+	gap: var(--text-spacing);
+
+	display: flex;
+	align-items: center;
+	width: unset;
+
+	&.friendRequestViewActive {
+		@include controls.button-active;
+	}
+
+	// TODO(controls): maybe stop using position: absolute for this
+	&::before {
+		position: relative;
+		width: var(--icon-size);
+		height: var(--icon-size);
+	}
+
+	.requestsNumber {
+		@include utils.parentheses;
+
+		all: unset;
+	}
+}
+
+.friendSearchClear {
+	display: none;
+}
+
+.friendSearchInput {
+	@include controls.text-field;
+
+	background-image: none;
+
+	&,
+	&::placeholder {
+		letter-spacing: 0;
+	}
+}
+
+.friendsTabButtonsContainer {
+	padding: 0;
+}
+
+.searchIconButton {
+	.TabSearchActive & {
+		display: none;
+	}
+
+	&::before {
+		content: attr(title);
+
+		position: absolute;
+		top: var(--spacing);
+		left: var(--spacing);
+
+		color: var(--color-gray-text);
+	}
+
+	svg {
+		display: none;
+	}
+}
+
+.socialListTab {
+	@include utils.text-reset;
+
+	--spacing: calc(var(--border-size) + var(--input-spacing));
+
+	background-color: transparent;
+	box-shadow: none;
+	padding: 0;
+	margin-top: calc(6px + var(--window-gap));
+
+	height: unset;
+
+	.inputContainer {
+		margin: calc(var(--spacing) * -1);
+	}
+}
+
+.SteamPlayerGroupFooter {
+	color: light-dark(green, lightgreen);
+}
+
+.SteamPlayerGroupFooterCount {
+	.count {
+		color: inherit;
+		font: var(--text-ui);
+	}
+}
+
+.SteamPlayerGroupFooterLabel {
+	color: inherit;
+	font: var(--text-ui);
+}
+
+.SteamPlayerGroupLines {
+	display: none;
+}
+
+.tabLabel {
+	@include shared.dialog-title;
+
+	html[browsertype="DirectHWND"] & {
+		display: none;
+	}
+}
+
+.TabSearchButton {
+	@include controls.text-field;
+
+	margin-right: var(--toolbar-spacing);
+
+	order: -1;
+}

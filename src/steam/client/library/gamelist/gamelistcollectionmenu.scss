@@ -1,0 +1,13 @@
+@use "shared++/utils";
+
+#CollectionDelete {
+	display: none;
+}
+
+#CollectionDeleteContainer {
+	.DialogBodyText {
+		span {
+			@include utils.text-reset;
+		}
+	}
+}

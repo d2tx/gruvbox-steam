@@ -1,0 +1,123 @@
+@use "shared/controls";
+@use "shared/window";
+@use "shared++/utils";
+@use "steam/shared";
+
+#Browser {
+	@include shared.browser-view-host;
+}
+
+#BrowserWrapper {
+	height: calc(100% - var(--border-size));
+}
+
+#ContentFrame {
+	margin-bottom: var(--window-gap);
+}
+
+#FocusBar,
+#URLBarReplacement {
+	display: none;
+}
+
+#LockIcon {
+	background-image: icon("url");
+	margin-right: var(--text-spacing);
+
+	width: var(--icon-size);
+	height: var(--icon-size);
+}
+
+#ReloadButton {
+	--button-img: icon("reload");
+	@include controls.button;
+	@include controls.icon-button;
+}
+
+#RootMenuBar {
+	@include window.menubar;
+
+	gap: 0;
+	padding: 0;
+	margin: 0;
+
+	flex: initial;
+	max-width: 100%;
+}
+
+#SuperNavBar {
+	padding: 0;
+
+	height: unset;
+	min-height: unset;
+	flex-direction: column;
+
+	anchor-name: --supernavbar;
+	-webkit-app-region: no-drag;
+
+	&::after {
+		@include utils.pseudo-separator;
+	}
+}
+
+#TitleBar {
+	flex-direction: column-reverse;
+	height: unset;
+
+	-webkit-app-region: unset;
+
+	&::before {
+		@include utils.pseudo-separator;
+
+		margin-top: var(--window-gap);
+	}
+}
+
+#TopBar {
+	background: transparent;
+	box-shadow: none;
+}
+
+#URL {
+	@include utils.text-reset;
+}
+
+#URLBar {
+	background-color: transparent;
+	box-shadow: none;
+	gap: var(--toolbar-spacing);
+	padding: 0 var(--toolbar-container-spacing);
+	margin-bottom: var(--window-gap);
+
+	svg {
+		display: none;
+	}
+}
+
+#URLBarText {
+	@include controls.text-field;
+
+	width: 100%;
+}
+
+#WindowControls {
+	margin-block-end: var(--window-gap);
+
+	flex: initial;
+	cursor: default;
+
+	-webkit-app-region: drag;
+
+	html[browsertype="DirectHWND"] & {
+		display: none;
+	}
+
+	.title-area-children::after {
+		content: "Steam";
+	}
+}
+
+#Wrapper {
+	background-color: transparent;
+	border: none;
+}

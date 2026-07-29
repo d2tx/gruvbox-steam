@@ -1,0 +1,87 @@
+@use "shared/controls";
+@use "shared/table";
+@use "shared++/utils";
+@use "steam/shared";
+
+#DialogBody {
+	box-shadow: none;
+	gap: 0;
+	padding: 0;
+
+	.DialogBodyText {
+		margin: 0;
+
+		display: flex;
+		flex-direction: column;
+	}
+
+	.DialogInput_Wrapper .DialogButton {
+		min-width: var(--button-min-width);
+	}
+
+	[style="--indent-level: 0;"] > div {
+		gap: 0;
+
+		// Align with the "IP Address" copy button.
+		height: calc(1lh + var(--button-spacing) * 2);
+		display: grid;
+		grid-template-columns: 25% 75%;
+
+		// #FieldDescription in gamepaddialog
+		&:nth-child(2) {
+			margin-left: 0;
+
+			display: block;
+		}
+	}
+
+	// TODO: God knows why this doesn't work
+	svg {
+		display: none;
+	}
+}
+
+#PingFailed {
+	color: darkred;
+}
+
+#PlayersList {
+	// vars at the bottom to override the shared mixin
+	@include shared.generic-dialog-content-container-offset;
+	@include utils.content-container-alt;
+
+	// fits 16px text size
+	--list-height: 386px;
+	--inset-block-start: calc(
+		var(--dialog-offset) + var(--main-window-titlebar-height)
+	);
+
+	margin-top: var(--border-size);
+	margin-bottom: var(--text-spacing);
+
+	overflow: auto;
+	height: var(--list-height);
+
+	order: -1;
+
+	&::before {
+		height: calc(var(--list-height) + var(--border-size) * 2);
+	}
+}
+
+#Header {
+	@include utils.text-reset;
+	@include controls.button;
+	@include table.header-row;
+
+	text-align: left;
+
+	position: sticky;
+	top: 0;
+}
+
+#Details {
+	@include table.row;
+
+	border: none;
+}

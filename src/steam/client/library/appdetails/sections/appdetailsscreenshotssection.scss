@@ -1,0 +1,12 @@
+@use "shared++/utils";
+
+#InstructionText,
+#NoneTaken {
+	@include utils.text-reset;
+}
+
+#Screenshots {
+	margin-bottom: var(--text-spacing);
+
+	overflow: visible;
+}

@@ -1,0 +1,33 @@
+@use "shared/window";
+@use "shared++/utils";
+
+#SteamRuntimeSystemInfoContainer {
+	@include window.content-container;
+
+	margin-top: var(--text-spacing);
+}
+
+#SteamRuntimeSystemInfoDialogContent {
+	.DialogBody {
+		gap: 0;
+		// Stolen from src/steam/shared/dialogshared.scss
+		padding-bottom: calc(
+			var(--statusbar-height) + var(--window-gap) + var(--dialog-spacing)
+		);
+	}
+
+	.DialogBodyText {
+		margin-bottom: calc(12px + var(--dialog-button-spacing));
+	}
+}
+
+#Text {
+	@include utils.text-reset;
+
+	font: var(--text-monospace);
+}
+
+#TextContainer {
+	background-color: transparent;
+	box-shadow: none;
+}

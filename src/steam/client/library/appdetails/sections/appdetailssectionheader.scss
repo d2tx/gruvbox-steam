@@ -1,0 +1,15 @@
+@use "steam/shared";
+
+#SectionHeader {
+	@include shared.library_section-header;
+
+	color: inherit;
+	font: var(--text-ui);
+	letter-spacing: 0;
+	text-transform: none;
+
+	align-items: start;
+	position: sticky;
+	top: 0;
+	max-height: 100vh;
+}

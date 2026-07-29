@@ -1,0 +1,38 @@
+@use "shared/scrollbar";
+@use "shared++/utils";
+
+#PlayHeadAnnotation {
+	@include utils.arrow("bottom");
+
+	svg {
+		display: none;
+	}
+}
+
+// TODO: wtf is this
+#RangeAnnotation {
+	opacity: 1;
+}
+
+#ScrollbarAndSiblings {
+	padding-top: 4px;
+}
+
+#ScrollThumb {
+	@include scrollbar.thumb;
+
+	filter: none;
+	opacity: 1;
+	border: none;
+
+	height: calc(100% - var(--border-size) * 2);
+	top: var(--border-size);
+}
+
+#ScrollTrack {
+	background: var(--checkerboard);
+	box-shadow: var(--border-field);
+	padding: var(--border-size);
+
+	height: 12px;
+}

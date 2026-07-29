@@ -1,0 +1,32 @@
+@use "shared/controls";
+
+#Box {
+	background-color: transparent;
+
+	& > button {
+		--button-img: icon("reload");
+		@include controls.icon-button;
+
+		& > svg {
+			display: none;
+		}
+	}
+}
+
+#Column {
+	box-shadow: var(--border-field);
+	padding: var(--border-size);
+}
+
+#LoginQR {
+	background-color: var(--color-window);
+	border-color: var(--color-window);
+
+	&#Blur {
+		filter: none;
+
+		& > * {
+			display: none;
+		}
+	}
+}

@@ -1,0 +1,32 @@
+@use "shared/controls";
+
+#detailText {
+	font: inherit;
+	margin: 0;
+}
+
+#OfflineContainer {
+	background-color: transparent;
+}
+
+#OfflineMessage {
+	gap: var(--messagebox-content-spacing);
+}
+
+#retryButton {
+	@include controls.button;
+
+	background-image: none;
+	text-transform: none;
+
+	width: 100%;
+	height: unset;
+}
+
+#summaryText {
+	font: var(--text-ui);
+	font-weight: bold;
+	color: inherit;
+	text-align: start;
+	margin: 0;
+}

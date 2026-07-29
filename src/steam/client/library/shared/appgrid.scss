@@ -1,0 +1,51 @@
+@use "shared/controls";
+@use "shared/listbox";
+@use "shared++/utils";
+@use "steam/shared";
+
+#AppGridSectionHeader {
+	display: none;
+}
+
+#CollectionOptions {
+	padding: 0;
+}
+
+#LibraryImageBackgroundGlow {
+	display: none;
+}
+
+#SortingDropDown {
+	gap: var(--text-spacing);
+
+	align-items: center;
+
+	#CollectionOptions {
+		@include shared.library_in-toolbar;
+
+		right: anchor(right);
+	}
+}
+
+#SortingDropDownContainer {
+	// ANOTHER fucking context menu, AND it has an !important
+	.DesktopUI & > div {
+		@include listbox.container;
+	}
+}
+
+#SortingDropDownItems {
+	@include utils.text-reset;
+
+	margin: 0;
+}
+
+#SortingDropDownLabel {
+	@include utils.text-reset;
+
+	margin: 0;
+
+	&::after {
+		content: ": ";
+	}
+}

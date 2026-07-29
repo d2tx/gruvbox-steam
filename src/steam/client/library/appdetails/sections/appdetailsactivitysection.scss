@@ -1,0 +1,29 @@
+@use "shared/text";
+
+#ActivityFeedContainer {
+	max-width: unset;
+
+	// Featured event
+	&#Rollup {
+		all: unset;
+
+		--commentthread_display: none;
+
+		// #appdetailssection_AppDetailsSectionContainer
+		& > div {
+			padding: 0;
+		}
+	}
+}
+
+#ViewLastNews {
+	@include text.link;
+
+	background-color: transparent;
+	font: inherit;
+	padding: 0;
+
+	position: absolute;
+	top: calc(1lh + var(--appdetails_container-spacing-y) + var(--text-spacing));
+	left: var(--appdetails_container-spacing-x);
+}

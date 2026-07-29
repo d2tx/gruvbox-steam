@@ -1,0 +1,37 @@
+@use "shared/controls";
+@use "steam/shared";
+
+#AppDetailsSection {
+	@include shared.library_section;
+
+	color: inherit;
+	font: var(--text-ui);
+	margin: 0;
+}
+
+// !important for #appdetailsprimarylinkssection_LinksSection
+div#AppDetailsSectionContainer {
+	@include shared.library_section-content;
+
+	background: none;
+	margin: 0;
+}
+
+#Body {
+	gap: var(--text-spacing);
+	padding: 0;
+}
+
+#Highlight {
+	@include controls.tooltip;
+
+	background-image: none;
+	font: inherit;
+	box-shadow: none;
+	margin-bottom: var(--library_section-spacing);
+}
+
+#RightColumnSection {
+	border: none;
+	box-shadow: none;
+}

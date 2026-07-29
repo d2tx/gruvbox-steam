@@ -1,0 +1,9 @@
+@use "shared++/utils";
+
+#TableHeader {
+	@include utils.text-reset;
+
+	& > :first-child {
+		@include utils.legend-as-div;
+	}
+}

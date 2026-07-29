@@ -1,0 +1,26 @@
+#CollectionButton {
+	letter-spacing: 0;
+}
+
+#CollectionIcon {
+	padding: 0;
+
+	width: 100%;
+	height: unset;
+	display: block;
+
+	&::before {
+		content: var(--AllCollectionsView_InfoIconCollections);
+	}
+}
+
+#CollectionIconBox {
+	display: none;
+}
+
+#Label {
+	color: var(--color-button-text);
+	font: var(--text-ui);
+	text-transform: unset;
+	margin: auto;
+}

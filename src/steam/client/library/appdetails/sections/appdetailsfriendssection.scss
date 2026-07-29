@@ -1,0 +1,35 @@
+@use "shared/controls";
+@use "shared++/utils";
+
+#AvatarAndLabel {
+	height: unset;
+
+	#LabelHolder {
+		padding: 0;
+
+		height: unset;
+	}
+}
+
+#ShowMore {
+	@include controls.button;
+}
+
+#Subsection {
+	padding: 0;
+	margin: 0;
+
+	&:not(#Recent) {
+		--steamavatar_size: 32px;
+	}
+
+	&::after {
+		@include utils.pseudo-separator;
+	}
+}
+
+#SubsectionHeader {
+	@include utils.text-reset;
+
+	padding-bottom: var(--text-spacing);
+}

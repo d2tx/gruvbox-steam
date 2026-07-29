@@ -1,0 +1,14 @@
+@use "shared/listbox";
+
+#DialogDropDownMenu_Item {
+	@include listbox.item($selected-sel: "&[aria-selected='true']");
+
+	svg {
+		color: inherit;
+		margin-inline: 0 var(--text-spacing);
+
+		flex-shrink: 0;
+		width: var(--icon-size);
+		height: var(--icon-size);
+	}
+}

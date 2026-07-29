@@ -1,0 +1,19 @@
+#AppDetailsOverviewPanel,
+#InnerContainer {
+	// for toolbar... ty valve
+	transform-style: unset;
+}
+
+#PlayBar {
+	top: 0;
+	left: 0;
+	width: 100%;
+}
+
+#ScrollContainer {
+	// for toolbar... ty valve
+	transform: none;
+	// for toolbar... ty valve
+	perspective: unset;
+	background: none;
+}

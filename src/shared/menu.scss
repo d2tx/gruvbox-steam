@@ -1,0 +1,72 @@
+@mixin -item-check {
+	content: "";
+
+	position: absolute;
+	top: 5px;
+
+	background-color: currentColor;
+}
+
+@mixin item($selected-sel) {
+	color: var(--color-button-text);
+	line-height: 1.25;
+	padding: 2px 20px;
+
+	position: relative;
+
+	#{$selected-sel},
+	&:hover {
+		background-color: var(--color-highlight);
+		color: var(--color-highlight-text);
+	}
+}
+
+@mixin item-parent {
+	&::after {
+		content: "";
+
+		position: absolute;
+		top: 4px;
+		right: 6px;
+		width: 4px;
+		height: 7px;
+
+		mask: icon("arrow-right", "mono");
+		background-color: currentColor;
+	}
+}
+
+@mixin item-primary {
+	font-weight: bold;
+}
+
+@mixin item-check {
+	&::before {
+		@include -item-check;
+
+		left: 6px;
+		width: 7px;
+		height: 7px;
+
+		mask: icon("checkmark", "mono");
+	}
+}
+
+@mixin item-disabled {
+	--color-button-text: var(--color-button-shadow);
+	text-shadow: 1px 1px var(--color-button-highlight);
+
+	pointer-events: none;
+}
+
+@mixin item-radio {
+	&::before {
+		@include -item-check;
+
+		left: 7px;
+		width: 6px;
+		height: 6px;
+
+		mask: icon("radio", "mono");
+	}
+}

@@ -1,0 +1,46 @@
+@use "steam/shared";
+
+%-button {
+	@include shared.pageable-container-button;
+}
+
+#HeaderPageControls {
+	@include shared.library_section-header;
+
+	color: var(--color-button-text);
+	font: inherit;
+	gap: var(--text-spacing);
+
+	align-items: center;
+}
+
+#Name {
+	font: inherit;
+
+	margin-block: 4px;
+}
+
+#PageableContainer {
+	@include shared.library_section;
+}
+
+#PageClickContainer {
+	margin: 0;
+}
+
+#PageableCloseButton {
+	@extend %-button;
+	--button-img: icon("clear");
+	--button-img-size: auto;
+	--button-img-pos: center;
+}
+
+#PageLeft {
+	@extend %-button;
+	--button-img: icon("arrow-big-left", "mono");
+}
+
+#PageRight {
+	@extend %-button;
+	--button-img: icon("arrow-big-right", "mono");
+}

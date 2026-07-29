@@ -1,0 +1,37 @@
+@use "shared/generatedassets";
+@use "shared/generatedicons";
+@use "shared/scrollbar";
+@use "shared/variables";
+
+* {
+	outline: none;
+	border-radius: 0;
+
+	box-sizing: border-box;
+
+	transition: none;
+}
+
+body {
+	font: var(--text-ui);
+	image-rendering: pixelated;
+	margin: 0;
+
+	box-sizing: border-box;
+}
+
+::placeholder {
+	color: var(--color-gray-text);
+	font: var(--text-ui);
+}
+
+::selection {
+	background-color: var(--color-highlight);
+	color: var(--color-highlight-text);
+}
+
+// TODO: happens in Discord and Steam for some reason
+::-webkit-scrollbar-button:start:increment,
+::-webkit-scrollbar-button:end:decrement {
+	display: none;
+}

@@ -1,0 +1,93 @@
+@use "shared/controls";
+@use "steam/shared";
+
+#ControlBlock {
+	gap: var(--toolbar-spacing);
+	padding: 0;
+
+	flex-direction: row;
+
+	svg {
+		display: none;
+	}
+}
+
+#Controls {
+	transform: unset;
+	gap: 0;
+
+	position: unset;
+	min-width: unset;
+}
+
+#ControlsAndVolume {
+	gap: var(--toolbar-spacing);
+
+	flex-direction: row;
+	height: unset;
+}
+
+#IconButton {
+	@include shared.icon-mono-button($disabled-sel: "&:not(#Active)");
+
+	flex: unset;
+
+	&:nth-child(1) {
+		--button-img: icon("shuffle", "mono");
+	}
+
+	&:nth-child(2) {
+		--button-img: icon("previous", "mono");
+	}
+
+	&:nth-child(3) {
+		--button-img: icon("play", "mono");
+
+		&:has([d$="25Z"]) {
+			--button-img: icon("pause", "mono");
+		}
+	}
+
+	&:nth-child(4) {
+		--button-img: icon("next", "mono");
+	}
+
+	&:nth-child(5) {
+		--button-img: icon("repeat", "mono");
+	}
+}
+
+#Progress {
+	gap: var(--text-spacing);
+}
+
+#Text {
+	font: var(--text-ui);
+}
+
+#VolumeControl {
+	--button-img: icon("sound");
+
+	gap: var(--text-spacing);
+
+	flex-direction: row;
+	align-items: center;
+	position: unset;
+
+	&:has(rect) {
+		--button-img: icon("sound-muted");
+	}
+
+	&::before {
+		content: "";
+
+		// TODO: utils.icon
+		background-color: currentColor;
+		background: var(--button-img) no-repeat;
+		background-size: var(--button-img-size);
+		background-position: var(--button-img-pos);
+
+		width: var(--icon-size);
+		height: var(--icon-size);
+	}
+}

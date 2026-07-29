@@ -1,0 +1,97 @@
+@use "shared/controls";
+@use "shared++/utils";
+
+// fucking hell
+%-reset-icon-color {
+	color: var(--color-button-text);
+	fill: var(--color-button-text);
+	stroke: var(--color-button-text);
+}
+
+#ActivityCommentThread {
+	background: var(--color-button-face);
+	border: 1px solid var(--color-button-shadow);
+	padding: var(--library_section-spacing);
+	margin-left: var(--library_section-spacing);
+
+	#ActorName {
+		margin-left: var(--text-spacing);
+	}
+
+	#Comment {
+		color: inherit;
+	}
+
+	#CommentBody {
+		margin: var(--text-spacing);
+	}
+
+	#CommenterandTime {
+		margin: 0;
+
+		height: var(--steamavatar_size);
+		align-items: center;
+	}
+
+	#CommentText {
+		font: inherit;
+	}
+
+	#CommentTime {
+		color: var(--color-gray-text);
+		font: inherit;
+		margin-left: var(--text-spacing);
+	}
+}
+
+#ActivityCommentThreadMinimized {
+	opacity: 1;
+	padding-top: var(--dialog-button-spacing);
+}
+
+#ButtonSpacer {
+	display: none;
+}
+
+#LikeButton,
+#CommentButton,
+#Reactions {
+	@include controls.button;
+
+	gap: var(--text-spacing);
+}
+
+#LikeCount,
+#CommentCount,
+#ReactionCount {
+	@include utils.text-reset;
+}
+
+#LikeIcon,
+#CommentIcon,
+#RatingIcon,
+#ReactionIcon {
+	@extend %-reset-icon-color;
+
+	width: var(--icon-size);
+	height: var(--icon-size);
+
+	svg,
+	path {
+		@extend %-reset-icon-color;
+	}
+}
+
+#RatingBar {
+	opacity: 1;
+	font: var(--text-ui);
+	gap: var(--dialog-button-spacing);
+	margin-top: var(--dialog-button-spacing);
+
+	display: var(--commentthread_display);
+}
+
+#RatingDetails {
+	color: inherit;
+	font: inherit;
+}

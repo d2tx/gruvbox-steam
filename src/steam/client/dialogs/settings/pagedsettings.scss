@@ -1,0 +1,60 @@
+@use "shared/tabs";
+@use "steam/shared";
+
+#PageListSeparator,
+#PageListItem_Icon {
+	display: none;
+}
+
+#PagedSettingsDialog {
+	margin: var(--dialog-spacing);
+
+	min-width: unset;
+	min-height: unset;
+
+	.DialogDropDown {
+		min-width: var(--button-min-width);
+	}
+
+	.DialogHeader {
+		display: none;
+	}
+}
+
+#PagedSettingsDialog_PageList {
+	@include tabs.container-vertical;
+
+	padding: 0;
+
+	overflow: visible;
+	flex-grow: 0;
+}
+
+#PagedSettingsDialog_PageListColumn {
+	background-color: transparent;
+	padding: 0;
+
+	max-width: unset;
+	min-height: unset;
+	flex-grow: 0;
+}
+
+#PagedSettingsDialog_PageListItem {
+	@include tabs.tab-vertical($selected-sel: "&#Active");
+
+	font: var(--text-ui);
+
+	cursor: default;
+}
+
+#PagedSettingsDialog_Title {
+	@include shared.dialog-title;
+
+	text-transform: unset;
+	padding: 0;
+
+	.MillenniumSettings &,
+	html[browsertype="DirectHWND"] & {
+		display: none;
+	}
+}

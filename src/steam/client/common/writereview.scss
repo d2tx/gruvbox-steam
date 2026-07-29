@@ -1,0 +1,126 @@
+@use "shared/controls";
+@use "shared++/utils";
+
+#ButtonText {
+	margin: 0;
+}
+
+#CompactThumbButton {
+	@include controls.button;
+
+	margin-left: var(--dialog-button-spacing);
+}
+
+#DescribeGame,
+#OptionsContainer {
+	margin-block: var(--text-spacing);
+
+	&::before {
+		@include utils.pseudo-separator;
+	}
+}
+
+#FreeCheckbox {
+	// #partnereventshared_HelperTooltip
+	.HelperTooltip {
+		display: none;
+	}
+}
+
+#Header {
+	color: inherit;
+	font-size: var(--text-header-size);
+}
+
+#LeftContainer {
+	@include utils.text-reset;
+}
+
+#OptionButton {
+	background: none;
+
+	width: unset;
+}
+
+#OptionDesc {
+	text-align: left;
+	padding: 0;
+	margin-top: var(--text-spacing);
+}
+
+#OptionsContainer {
+	background-color: transparent;
+	padding: 0;
+
+	& > div {
+		border: none;
+		padding: 0;
+	}
+}
+
+#OptionSvg {
+	display: none;
+}
+
+#Playtime,
+#RecommendGame {
+	color: inherit;
+}
+
+#RatingContainer {
+	background-color: transparent;
+	padding: 0;
+	margin: var(--text-spacing) 0;
+
+	align-items: center;
+}
+
+#ReviewTextArea {
+	@include controls.text-field;
+}
+
+#ReviewThumbButton {
+	@include controls.button;
+
+	background-image: none;
+
+	&#Selected {
+		@include controls.button-active;
+	}
+
+	span {
+		padding-left: 10px;
+	}
+}
+
+#ReviewSettingsChecks {
+	margin: 0;
+}
+
+#ReviewSettingsContainer {
+	margin-top: var(--text-spacing);
+}
+
+#ReviewSettingsRow {
+	align-items: center;
+
+	& > span {
+		margin-right: var(--text-spacing);
+	}
+}
+
+#ThumbIcon {
+	fill: inherit;
+
+	left: var(--icon-size);
+	width: var(--icon-size);
+	height: var(--icon-size);
+
+	&#Down {
+		top: 3px;
+	}
+}
+
+#WriteReviewContainer {
+	font-size: var(--text-ui-size);
+}

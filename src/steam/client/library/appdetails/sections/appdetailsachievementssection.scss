@@ -1,0 +1,73 @@
+@use "shared/controls";
+@use "shared++/utils";
+
+#AchievementProgressContainer {
+	@include controls.progress-bar($filled-sel: "#AchievementProgress");
+
+	margin-block: var(--text-spacing) 0;
+}
+
+#Featured {
+	align-items: start;
+}
+
+#Icon {
+	margin: 0;
+}
+
+#Label {
+	@include utils.text-reset;
+}
+
+#Remainder {
+	@include controls.button;
+
+	margin: 0;
+
+	min-width: var(--achievementiconbase_size);
+	height: var(--achievementiconbase_size);
+	display: flex;
+	align-items: center;
+	justify-content: center;
+}
+
+#RemainderText {
+	@include utils.text-reset;
+}
+
+#Ribbon {
+	display: none;
+}
+
+#ShowDivider {
+	border: none;
+	margin: 0;
+
+	&::before {
+		@include utils.pseudo-separator;
+	}
+}
+
+#TextSection {
+	color: inherit;
+	font: inherit;
+	padding: 0;
+	margin-left: var(--text-spacing);
+
+	#Desc {
+		color: inherit;
+		font: inherit;
+	}
+
+	#Name {
+		color: inherit;
+		font: inherit;
+		font-weight: bold;
+		margin: 0;
+	}
+}
+
+#UnlockedLabel,
+#UnlockedLabelPercent {
+	color: inherit;
+}

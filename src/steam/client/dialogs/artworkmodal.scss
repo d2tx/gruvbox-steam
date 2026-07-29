@@ -1,0 +1,26 @@
+#ArtworkContainer {
+	box-shadow: none;
+}
+
+#ArtworkModal {
+	border: none;
+}
+
+#ArtworkModalContainer {
+	mask-image: none;
+	padding: var(--tabpanel-spacing);
+
+	overflow: auto;
+	height: calc(100% - 18px);
+	justify-content: center;
+}
+
+// "Close" button
+#ArtworkModalDetails {
+	display: none;
+}
+
+#ModalBox {
+	background: none;
+	box-shadow: none;
+}

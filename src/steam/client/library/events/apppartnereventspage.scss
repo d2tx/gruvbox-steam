@@ -1,0 +1,100 @@
+@use "shared/controls";
+@use "shared++/utils";
+@use "steam/shared";
+
+#AppPartnerEventsContainer {
+	padding: 0;
+	margin: 0;
+}
+
+#AppPartnerEventsPage {
+	background-color: var(--color-window);
+
+	inset: var(--border-size);
+}
+
+#ControlSection {
+	@include shared.library_in-toolbar;
+
+	background-color: var(--color-button-face);
+
+	right: anchor(right);
+	left: anchor(left);
+	width: unset;
+	height: 24px;
+
+	pointer-events: all;
+}
+
+#ControlSectionRightSide {
+	flex-direction: row-reverse;
+
+	& > div {
+		@include controls.button;
+		@include controls.icon-button;
+
+		animation: none;
+
+		width: unset;
+
+		&#CloseButton {
+			--button-img: icon("clear");
+		}
+
+		&#ScrollButton#Down {
+			--button-img: icon("arrow-big-bottom", "mono");
+		}
+
+		&#ScrollButton#Up {
+			--button-img: icon("arrow-big-top", "mono");
+		}
+	}
+
+	#GameArt {
+		display: none;
+	}
+
+	svg {
+		display: none;
+	}
+}
+
+#EventTypeAndTimeRow {
+	flex-direction: column;
+	align-items: start;
+
+	&#WithReminder {
+		background: none;
+		gap: var(--text-spacing);
+		padding: 0;
+
+		#ReminderContainer {
+			margin: 0;
+
+			width: 100%;
+		}
+	}
+}
+
+#PartnerEvent {
+	@include shared.library_section;
+
+	background: none;
+	border: none;
+	box-shadow: none;
+	margin: 0;
+
+	#EventType {
+		color: var(--color-gray-text);
+		font: var(--text-ui);
+	}
+
+	#TimeandPostedBy {
+		color: var(--color-gray-text);
+		gap: var(--text-spacing);
+		margin: 0;
+
+		flex-direction: column;
+		align-items: start;
+	}
+}

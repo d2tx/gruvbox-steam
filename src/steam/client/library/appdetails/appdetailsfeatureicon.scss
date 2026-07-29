@@ -1,0 +1,11 @@
+@use "shared++/utils";
+
+#Icon {
+	@media (prefers-color-scheme: light) {
+		filter: invert(1);
+	}
+}
+
+#Label {
+	@include utils.text-reset;
+}

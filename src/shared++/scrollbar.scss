@@ -1,0 +1,35 @@
+@use "shared/generatedassets";
+@use "shared/scrollbar";
+
+::-webkit-scrollbar {
+	@include scrollbar.container;
+}
+
+::-webkit-scrollbar-button {
+	@include scrollbar.button;
+
+	&:vertical:decrement {
+		@include generatedassets.scrollbar-button-vertical-decrement;
+	}
+
+	&:vertical:increment {
+		@include generatedassets.scrollbar-button-vertical-increment;
+	}
+
+	&:horizontal:decrement {
+		@include generatedassets.scrollbar-button-horizontal-decrement;
+	}
+
+	&:horizontal:increment {
+		@include generatedassets.scrollbar-button-horizontal-increment;
+	}
+}
+
+::-webkit-scrollbar-corner,
+::-webkit-scrollbar-resize {
+	@include scrollbar.corner;
+}
+
+::-webkit-scrollbar-thumb {
+	@include scrollbar.thumb;
+}

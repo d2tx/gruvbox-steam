@@ -1,0 +1,79 @@
+@use "shared/list";
+@use "shared/tree";
+
+#Container {
+	@include tree.item($expanded-sel: "&");
+
+	overflow: visible;
+	background-color: transparent;
+	color: var(--color-window-text);
+	font: var(--text-ui);
+	box-shadow: none;
+
+	padding: var(--gamelistentry_container-padding);
+
+	&::before {
+		left: 12px;
+		top: var(--gamelistentry_tree-border-inset-top);
+		width: 18px;
+		height: 24px;
+	}
+
+	&::after {
+		left: -7px;
+		top: -10px;
+		height: calc(100% - 1px);
+	}
+
+	&:not(#Installed, #Running) {
+		color: var(--color-gray-text);
+	}
+
+	&#Selected {
+		@include list.item-name-selected;
+
+		// for border
+		margin-block-start: -1px;
+	}
+
+	* {
+		background-color: transparent;
+	}
+}
+
+#DownloadDash,
+#DownloadProgress {
+	color: var(--color-gray-text);
+}
+
+#DownloadProgressSVG {
+	display: none;
+}
+
+#FriendIsPlaying {
+	left: unset;
+	right: 0;
+}
+
+#AppIconDownloading,
+#GameIcon {
+	filter: none;
+	margin-right: 7px;
+
+	width: var(--icon-size);
+	height: var(--icon-size);
+}
+
+#GameListEntryContainer {
+	background-color: transparent;
+	padding-block: var(--gamelistentry_container-container-padding-block);
+
+	align-items: center;
+
+	&::before {
+		left: 7px;
+		top: -14px;
+		width: 8px;
+		height: 24px;
+	}
+}

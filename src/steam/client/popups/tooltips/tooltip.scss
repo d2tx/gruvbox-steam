@@ -1,0 +1,24 @@
+@use "shared/controls";
+
+#TextToolTip,
+#ToolTipCustom {
+	@include controls.tooltip;
+
+	background-image: none;
+	font: var(--text-ui);
+	text-shadow: none;
+	box-shadow: none;
+}
+
+#ToolTipCustom {
+	gap: 1em;
+
+	display: flex;
+	flex-direction: column;
+}
+
+#ToolTipTitle,
+#ToolTipInsetContent {
+	color: inherit;
+	margin: 0;
+}

@@ -1,0 +1,34 @@
+@use "shared/controls";
+@use "shared++/utils";
+
+#ButtonChild {
+	@include controls.button;
+
+	background-image: none;
+
+	height: var(--combobox-button-height);
+
+	svg {
+		display: none;
+	}
+}
+
+#ButtonText {
+	@include utils.text-reset;
+
+	text-shadow: inherit;
+}
+
+#PlayButtonContainer {
+	min-width: unset;
+	height: unset;
+}
+
+#StreamingSelector {
+	--button-img: icon("arrow-bottom", "mono");
+	--icon-button-width: 16px;
+	--icon-button-height: var(--combobox-button-height);
+	@include controls.icon-button;
+
+	width: unset;
+}

@@ -1,0 +1,13 @@
+@use "shared++/utils";
+
+#EntryLabel {
+	padding-right: var(--text-spacing);
+
+	&::after {
+		content: ":";
+	}
+}
+
+#EntryValue {
+	@include utils.text-reset;
+}

@@ -1,0 +1,138 @@
+@use "shared/controls";
+@use "shared++/utils";
+@use "steam/shared";
+
+%-pageablecontainer-button {
+	@include shared.pageable-container-button;
+}
+
+#AddShowcase {
+	@include controls.button($disabled-sel: "&#Disabled");
+
+	opacity: 1;
+
+	justify-content: center;
+
+	svg {
+		display: none;
+	}
+}
+
+#AddShowcaseRow,
+#DoneReorderingRow {
+	margin-inline: var(--toolbar-container-spacing);
+
+	position: fixed;
+	position-anchor: --librarymainpanel;
+	top: anchor(top);
+	left: anchor(left);
+}
+
+#ChildrenContainer {
+	--library_section-display: block;
+	margin: var(--appdetails_container-spacing-y)
+		var(--appdetails_container-spacing-x);
+}
+
+#Collapser {
+	--button-img: icon("arrow-big-bottom", "mono");
+	@include controls.button;
+	@include controls.icon-button;
+
+	width: unset;
+
+	&:has(> [style="transform: rotate(270deg);"]) {
+		--button-img: icon("arrow-big-top", "mono");
+	}
+
+	svg {
+		display: none;
+	}
+}
+
+#CollectionDropDown {
+	margin: 0;
+}
+
+#CountDisplay {
+	@include utils.text-reset;
+
+	margin-left: var(--text-spacing);
+}
+
+#DeleteButton {
+	--button-img: icon("clear");
+	@include controls.button;
+	@include controls.icon-button;
+
+	opacity: 1;
+
+	svg {
+		display: none;
+	}
+}
+
+#PageButtons {
+	margin: 0;
+}
+
+#PageLeft {
+	--button-img: icon("arrow-big-left", "mono");
+	@extend %-pageablecontainer-button;
+}
+
+#PageRight {
+	--button-img: icon("arrow-big-right", "mono");
+	@extend %-pageablecontainer-button;
+}
+
+#Showcase {
+	border: none;
+	padding: 0;
+
+	// breaks
+	&:not(:has(> .CSSGrid_Measure, > #ChildrenContainer, #Draggable:only-child)) {
+		@include shared.library_section;
+	}
+
+	&#EmptyShowcase {
+		#EmptyMessage ~ * {
+			display: none;
+		}
+
+		#Message {
+			font: inherit;
+			margin: var(--library_section-spacing) auto;
+
+			position: unset;
+		}
+
+		#ShowcaseArrow {
+			display: none;
+		}
+	}
+}
+
+#ShowcaseHeader {
+	@include shared.library_section-header;
+
+	color: var(--color-button-text);
+	font: inherit;
+	gap: var(--text-spacing);
+	border: none;
+
+	align-items: center;
+	height: 100%;
+
+	#Rule {
+		@include shared.library_drag-handle;
+	}
+
+	#DragHandle {
+		display: none;
+	}
+}
+
+#SortingDropDown {
+	margin: 0;
+}

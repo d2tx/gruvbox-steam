@@ -1,0 +1,87 @@
+@use "shared/listbox";
+@use "shared++/utils";
+
+#Console {
+	background-color: transparent;
+	font-family: var(--text-monospace-font);
+
+	pre {
+		// Its height is 17px anyway
+		font-size: 12pt;
+		color: var(--color-window-text);
+	}
+}
+
+#ConsoleInput {
+	padding: 0;
+
+	.DialogInput {
+		margin-top: var(--window-gap);
+	}
+}
+
+#ConsoleInner {
+	--text-field-height: calc(
+		1rlh + var(--input-spacing) * 2 + var(--border-size) * 2
+	);
+	--window-offset: var(--main-window-border-spacing);
+
+	--inset-inline: var(--window-offset);
+	// 15px = separators with their margins
+	--inset-block-start: calc(
+		var(--window-offset) + var(--main-window-titlebar-height) +
+			var(--menubar-height) + var(--window-gap) * 2 +
+			var(--combobox-button-height) + 15px
+	);
+	--inset-block-end: calc(
+		var(--window-offset) + var(--statusbar-height) + var(--text-field-height) +
+			var(--window-gap) * 2
+	);
+	--inset: var(--inset-block-start) var(--inset-inline) var(--inset-block-end)
+		var(--inset-inline);
+
+	@include utils.content-container-alt;
+}
+
+// Console colors
+#Assert,
+#Error {
+	color: #800;
+}
+
+#Warning {
+	color: #880;
+}
+
+#Input {
+	color: #008;
+}
+
+// Suggestions
+#Suggestion {
+	@include listbox.item($selected-sel: "&.hack");
+
+	background-color: transparent;
+
+	height: unset;
+}
+
+#Suggestions {
+	@include listbox.container;
+
+	gap: 0;
+	padding: 0;
+
+	flex-direction: column;
+	height: unset;
+}
+
+#Timestamp {
+	&::before {
+		content: "[";
+	}
+
+	&::after {
+		content: "]";
+	}
+}

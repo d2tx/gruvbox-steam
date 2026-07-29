@@ -1,0 +1,12 @@
+@use "shared++/utils";
+
+#ActionSection {
+	gap: var(--dialog-button-spacing);
+
+	flex-direction: row;
+}
+
+#DescriptionText {
+	@include utils.text-reset;
+	@include utils.legend-as-div;
+}

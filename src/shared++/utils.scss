@@ -1,0 +1,102 @@
+@use "shared/controls";
+@use "shared/text";
+
+/// @param {"top" | "right" | "bottom" | "left"} $direction
+@mixin arrow($direction) {
+	$cond: $direction == "top" or $direction == "bottom";
+	$w: $cond and 7px or 4px;
+	$h: $cond and 4px or 7px;
+
+	background-color: currentColor;
+	mask: icon(arrow-#{$direction}, "mono");
+
+	width: $w;
+	height: $h;
+}
+
+/// An alternative to `@include window.content-container` as a pseudo element
+/// for special elements.
+@mixin content-container-alt {
+	background-color: var(--color-window);
+	color: var(--color-window-text);
+	margin: var(--border-size);
+
+	&::before {
+		content: "";
+
+		position: fixed;
+		inset: var(--inset);
+
+		pointer-events: none;
+
+		box-shadow: var(--border-field);
+	}
+}
+
+@mixin text-reset {
+	color: inherit;
+	font: var(--text-ui);
+	letter-spacing: 0;
+	text-shadow: none;
+	text-transform: unset;
+}
+
+@mixin legend-as-div {
+	@include text.groupbox-header;
+
+	padding: 0 0.2rem;
+	margin: 0;
+
+	position: absolute;
+	top: calc(-0.5rlh + 1px);
+}
+
+@mixin move-scrollbar {
+	overflow: hidden;
+
+	& > div {
+		overflow: auto;
+		height: 100%;
+	}
+}
+
+@mixin parentheses {
+	&::before {
+		content: "(";
+	}
+
+	&::after {
+		content: ")";
+	}
+}
+
+@mixin pseudo-icon {
+	content: "";
+
+	position: absolute;
+	inset: 0;
+
+	mask: var(--button-img, none) no-repeat;
+	mask-size: var(--button-img-size, auto auto);
+	mask-position: var(--button-img-pos, center);
+}
+
+@mixin pseudo-separator {
+	content: "";
+
+	@include controls.separator;
+
+	display: block;
+}
+
+/// Removes content from an element and uses and HTML attribute for its text.
+/// @param {String} $name - HTML attribute of whose value to use as text.
+@mixin use-attr-text($name) {
+	&::before {
+		content: attr(#{$name});
+	}
+
+	& > * {
+		display: none;
+	}
+}
