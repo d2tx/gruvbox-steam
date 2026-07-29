@@ -30,9 +30,9 @@
 	--color-gray-text: #928374;
 	--color-link: #458588;
 
-	--text-ui-font: "Terminus", "Tahoma", "Arial", sans-serif;
-	--text-monospace-font: "Terminus", "MS Gothic", "MS Mincho", monospace;
-	font-family: "Terminus", "Tahoma", "Arial", sans-serif;
+	--text-ui-font: "Terminess Nerd Font", "Tahoma", "Arial", sans-serif;
+	--text-monospace-font: "Terminess Nerd Font", "MS Gothic", "MS Mincho", monospace;
+	font-family: "Terminess Nerd Font", "Tahoma", "Arial", sans-serif;
 
 	--icon-normal-computer: url("data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAAABmJLR0QA/wD/AP+gvaeTAAAA70lEQVQ4jWNkgAI7U7f/MPah07sYGbAAbGpYYBIqCvJIShEKkQG6mkOndzEyYVNICmC0M3X7v3RyAMOJM0/gghYmMlgVo6uJzt0A8QJMYvLCMwy58SYoCtEBuhomZAlkGp9mZDUUhwHcgNx4ExQa2RYYG2Y7TA0DAzQQVRTkGTztRTEUozsfWXz7wdcMdx48RPXC5IVnGFQU5BlUFOQZJi88w/D6xieG1zc+YYhj9QK5gAWf5IqTt4gzAOZ/5CjCzA+Q5A0LA097UYbJDx5CDHh94xOKUmyZ6dDpXYx2pm7/0dVSnhcYGIjLyjCArhYAvJx4XYN862gAAAAASUVORK5CYII=") !important;
 
