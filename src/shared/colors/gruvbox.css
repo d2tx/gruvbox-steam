@@ -30,11 +30,15 @@
 	--color-gray-text: #928374;
 	--color-link: #458588;
 
-	--text-ui-font: "Terminess Nerd Font", "Tahoma", "Arial", sans-serif;
-	--text-monospace-font: "Terminess Nerd Font", "MS Gothic", "MS Mincho", monospace;
-	font-family: "Terminess Nerd Font", "Tahoma", "Arial", sans-serif;
+	--text-ui-font: "Terminess Nerd Font", "Tahoma", "Arial", "Verdana", "MS Sans Serif", "MS Reference Sans Serif", sans-serif !important;
+	--text-monospace-font: "Terminess Nerd Font", "MS Gothic", "MS Mincho", "SimSun", "Less Perfect DOS VGA", monospace !important;
+	font-family: "Terminess Nerd Font", "Tahoma", "Arial", "Verdana", "MS Sans Serif", "MS Reference Sans Serif", sans-serif !important;
 
 	--icon-normal-computer: url("data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAAABmJLR0QA/wD/AP+gvaeTAAAA70lEQVQ4jWNkgAI7U7f/MPah07sYGbAAbGpYYBIqCvJIShEKkQG6mkOndzEyYVNICmC0M3X7v3RyAMOJM0/gghYmMlgVo6uJzt0A8QJMYvLCMwy58SYoCtEBuhomZAlkGp9mZDUUhwHcgNx4ExQa2RYYG2Y7TA0DAzQQVRTkGTztRTEUozsfWXz7wdcMdx48RPXC5IVnGFQU5BlUFOQZJi88w/D6xieG1zc+YYhj9QK5gAWf5IqTt4gzAOZ/5CjCzA+Q5A0LA097UYbJDx5CDHh94xOKUmyZ6dDpXYx2pm7/0dVSnhcYGIjLyjCArhYAvJx4XYN862gAAAAASUVORK5CYII=") !important;
 
 	--icon-normal-windows: url("data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAAABmJLR0QA/wD/AP+gvaeTAAABD0lEQVQ4jY2TsWrCUBSGv1vi0sWpQ95Ch0CnO3SIiCDkDURCR119BJ9BRPoGQkCkDh3sUnDwKcTBqUuXDrdLzyG5uUb/6eQk33//C/kNAdkkdaH9/rAz/i4Kge3OJMRjwflGamCT1An4e/oMGsh7C05MojJ8DQTYbuYA9Acz2p2JmmiCW3B/MKvNAMYmqXt86t6Eywlk93M58nCVvFORnCLu916hlU1hMaomEKPQ83Yzr91fEwyXZ4o8DpqEkrWyqc6aYLg8VwCBmmAAA///wesbAEUeq1l59vW9GLE/7IwmeHmONUmRx42wfKsJJEW2egfg46sZXI972odKu6RMYuRrPe4B1TLV6lk28hWq8x9PLX8gJVrq9gAAAABJRU5ErkJggg==") !important;
+}
+
+*, :root, body {
+	font-family: "Terminess Nerd Font", "Tahoma", "Arial", "Verdana", "MS Sans Serif", "MS Reference Sans Serif", sans-serif !important;
 }
